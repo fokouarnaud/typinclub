@@ -1,0 +1,122 @@
+[
+  {
+    "brokenImages": 0,
+    "client": 375,
+    "columns": [
+      {
+        "width": 327,
+        "x": 24
+      },
+      {
+        "width": 280,
+        "x": 47.5
+      }
+    ],
+    "font": "Lexend, sans-serif",
+    "height": 844,
+    "lang": "en",
+    "scroll": 375,
+    "titleSize": "30px",
+    "width": 390
+  },
+  {
+    "brokenImages": 0,
+    "client": 375,
+    "columns": [
+      {
+        "width": 327,
+        "x": 24
+      },
+      {
+        "width": 280,
+        "x": 47.5
+      }
+    ],
+    "font": "Lexend, sans-serif",
+    "height": 844,
+    "lang": "fr",
+    "scroll": 375,
+    "titleSize": "30px",
+    "width": 390
+  },
+  {
+    "brokenImages": 0,
+    "client": 753,
+    "columns": [
+      {
+        "width": 336.5,
+        "x": 24
+      },
+      {
+        "width": 336.5,
+        "x": 392.5
+      }
+    ],
+    "font": "Lexend, sans-serif",
+    "height": 844,
+    "lang": "en",
+    "scroll": 753,
+    "titleSize": "40px",
+    "width": 768
+  },
+  {
+    "brokenImages": 0,
+    "client": 753,
+    "columns": [
+      {
+        "width": 336.5,
+        "x": 24
+      },
+      {
+        "width": 336.5,
+        "x": 392.5
+      }
+    ],
+    "font": "Lexend, sans-serif",
+    "height": 844,
+    "lang": "fr",
+    "scroll": 753,
+    "titleSize": "40px",
+    "width": 768
+  },
+  {
+    "brokenImages": 0,
+    "client": 1425,
+    "columns": [
+      {
+        "width": 576.5,
+        "x": 96
+      },
+      {
+        "width": 576.5,
+        "x": 752.5
+      }
+    ],
+    "font": "Lexend, sans-serif",
+    "height": 844,
+    "lang": "en",
+    "scroll": 1425,
+    "titleSize": "60px",
+    "width": 1440
+  },
+  {
+    "brokenImages": 0,
+    "client": 1425,
+    "columns": [
+      {
+        "width": 576.5,
+        "x": 96
+      },
+      {
+        "width": 576.5,
+        "x": 752.5
+      }
+    ],
+    "font": "Lexend, sans-serif",
+    "height": 844,
+    "lang": "fr",
+    "scroll": 1425,
+    "titleSize": "60px",
+    "width": 1440
+  }
+]

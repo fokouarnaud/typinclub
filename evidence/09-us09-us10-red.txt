@@ -1,0 +1,1755 @@
+FFFFFFFFFFFFFFFF...................                                      [100%]
+================================== FAILURES ===================================
+____________________ test_us09_editorial_models_use_unfold ____________________
+
+    def test_us09_editorial_models_use_unfold():
+        for model in (LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink):
+>           assert model in admin.site._registry, f'{model.__name__} needs an editorial admin'
+E           AssertionError: LocalizedText needs an editorial admin
+E           assert <class 'showcase.models.LocalizedText'> in {<class 'django.contrib.auth.models.Group'>: <GroupAdmin: model=Group site=UnfoldAdminSite(name='admin')>, <class 'django.contrib.auth.models.User'>: <UserAdmin: model=User site=UnfoldAdminSite(name='admin')>}
+E            +  where {<class 'django.contrib.auth.models.Group'>: <GroupAdmin: model=Group site=UnfoldAdminSite(name='admin')>, <class 'django.contrib.auth.models.User'>: <UserAdmin: model=User site=UnfoldAdminSite(name='admin')>} = UnfoldAdminSite(name='admin')._registry
+E            +    where UnfoldAdminSite(name='admin') = admin.site
+
+tests\test_admin.py:12: AssertionError
+_____________ test_us09_admin_edit_appears_on_next_public_request _____________
+
+admin_client = <django.test.client.Client object at 0x000002872C171F90>
+client = <django.test.client.Client object at 0x000002872C14A8B0>, seeded = None
+
+    def test_us09_admin_edit_appears_on_next_public_request(admin_client, client, seeded):
+        text = LocalizedText.objects.get(key='hero.subtitle')
+>       response = admin_client.post(reverse('admin:showcase_localizedtext_change', args=[text.pk]), {
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            'key': text.key, 'fr': 'Nouveau contenu FR', 'en': 'New EN content', '_save': 'Save'})
+
+tests\test_admin.py:18:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_localizedtext_change', _prefix = '/', args = (6,)
+kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_localizedtext_change' not found. 'showcase_localizedtext_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+____ test_us10_anonymous_and_unprivileged_staff_cannot_edit[LocalizedText] ____
+
+client = <django.test.client.Client object at 0x000002872C2505F0>
+django_user_model = <class 'django.contrib.auth.models.User'>, seeded = None
+model = <class 'showcase.models.LocalizedText'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_us10_anonymous_and_unprivileged_staff_cannot_edit(client, django_user_model, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_change', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_localizedtext_change', _prefix = '/', args = (1,)
+kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_localizedtext_change' not found. 'showcase_localizedtext_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+________ test_us10_anonymous_and_unprivileged_staff_cannot_edit[Asset] ________
+
+client = <django.test.client.Client object at 0x000002872C22CC00>
+django_user_model = <class 'django.contrib.auth.models.User'>, seeded = None
+model = <class 'showcase.models.Asset'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_us10_anonymous_and_unprivileged_staff_cannot_edit(client, django_user_model, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_change', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_asset_change', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_asset_change' not found. 'showcase_asset_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_______ test_us10_anonymous_and_unprivileged_staff_cannot_edit[Preview] _______
+
+client = <django.test.client.Client object at 0x000002872BDA6850>
+django_user_model = <class 'django.contrib.auth.models.User'>, seeded = None
+model = <class 'showcase.models.Preview'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_us10_anonymous_and_unprivileged_staff_cannot_edit(client, django_user_model, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_change', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_preview_change', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_preview_change' not found. 'showcase_preview_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_________ test_us10_anonymous_and_unprivileged_staff_cannot_edit[FAQ] _________
+
+client = <django.test.client.Client object at 0x000002872BE6C6E0>
+django_user_model = <class 'django.contrib.auth.models.User'>, seeded = None
+model = <class 'showcase.models.FAQ'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_us10_anonymous_and_unprivileged_staff_cannot_edit(client, django_user_model, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_change', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_faq_change', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_faq_change' not found. 'showcase_faq_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+________ test_us10_anonymous_and_unprivileged_staff_cannot_edit[Offer] ________
+
+client = <django.test.client.Client object at 0x000002872BF12F90>
+django_user_model = <class 'django.contrib.auth.models.User'>, seeded = None
+model = <class 'showcase.models.Offer'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_us10_anonymous_and_unprivileged_staff_cannot_edit(client, django_user_model, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_change', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_offer_change', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_offer_change' not found. 'showcase_offer_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+____ test_us10_anonymous_and_unprivileged_staff_cannot_edit[OfferBenefit] _____
+
+client = <django.test.client.Client object at 0x000002872C11C050>
+django_user_model = <class 'django.contrib.auth.models.User'>, seeded = None
+model = <class 'showcase.models.OfferBenefit'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_us10_anonymous_and_unprivileged_staff_cannot_edit(client, django_user_model, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_change', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_offerbenefit_change', _prefix = '/', args = (1,)
+kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_offerbenefit_change' not found. 'showcase_offerbenefit_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+____ test_us10_anonymous_and_unprivileged_staff_cannot_edit[ExternalLink] _____
+
+client = <django.test.client.Client object at 0x000002872C153540>
+django_user_model = <class 'django.contrib.auth.models.User'>, seeded = None
+model = <class 'showcase.models.ExternalLink'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_us10_anonymous_and_unprivileged_staff_cannot_edit(client, django_user_model, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_change', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_externallink_change', _prefix = '/', args = (1,)
+kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_externallink_change' not found. 'showcase_externallink_change' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_ test_required_editorial_records_cannot_be_deleted_even_by_superuser[LocalizedText] _
+
+admin_client = <django.test.client.Client object at 0x000002872BFF9270>
+seeded = None, model = <class 'showcase.models.LocalizedText'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_required_editorial_records_cannot_be_deleted_even_by_superuser(admin_client, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_delete', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:41:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_localizedtext_delete', _prefix = '/', args = (1,)
+kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_localizedtext_delete' not found. 'showcase_localizedtext_delete' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_ test_required_editorial_records_cannot_be_deleted_even_by_superuser[Asset] __
+
+admin_client = <django.test.client.Client object at 0x000002872BFF8910>
+seeded = None, model = <class 'showcase.models.Asset'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_required_editorial_records_cannot_be_deleted_even_by_superuser(admin_client, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_delete', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:41:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_asset_delete', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_asset_delete' not found. 'showcase_asset_delete' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_ test_required_editorial_records_cannot_be_deleted_even_by_superuser[Preview] _
+
+admin_client = <django.test.client.Client object at 0x000002872BFFA8F0>
+seeded = None, model = <class 'showcase.models.Preview'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_required_editorial_records_cannot_be_deleted_even_by_superuser(admin_client, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_delete', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:41:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_preview_delete', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_preview_delete' not found. 'showcase_preview_delete' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+__ test_required_editorial_records_cannot_be_deleted_even_by_superuser[FAQ] ___
+
+admin_client = <django.test.client.Client object at 0x000002872BFF9DB0>
+seeded = None, model = <class 'showcase.models.FAQ'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_required_editorial_records_cannot_be_deleted_even_by_superuser(admin_client, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_delete', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:41:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_faq_delete', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_faq_delete' not found. 'showcase_faq_delete' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_ test_required_editorial_records_cannot_be_deleted_even_by_superuser[Offer] __
+
+admin_client = <django.test.client.Client object at 0x000002872BDC3250>
+seeded = None, model = <class 'showcase.models.Offer'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_required_editorial_records_cannot_be_deleted_even_by_superuser(admin_client, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_delete', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:41:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_offer_delete', _prefix = '/', args = (1,), kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_offer_delete' not found. 'showcase_offer_delete' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_ test_required_editorial_records_cannot_be_deleted_even_by_superuser[OfferBenefit] _
+
+admin_client = <django.test.client.Client object at 0x000002872BDC3B10>
+seeded = None, model = <class 'showcase.models.OfferBenefit'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_required_editorial_records_cannot_be_deleted_even_by_superuser(admin_client, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_delete', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:41:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_offerbenefit_delete', _prefix = '/', args = (1,)
+kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_offerbenefit_delete' not found. 'showcase_offerbenefit_delete' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_ test_required_editorial_records_cannot_be_deleted_even_by_superuser[ExternalLink] _
+
+admin_client = <django.test.client.Client object at 0x000002872BDC3390>
+seeded = None, model = <class 'showcase.models.ExternalLink'>
+
+    @pytest.mark.parametrize('model', [LocalizedText, Asset, Preview, FAQ, Offer, OfferBenefit, ExternalLink])
+    def test_required_editorial_records_cannot_be_deleted_even_by_superuser(admin_client, seeded, model):
+        obj = model.objects.first()
+>       url = reverse(f'admin:showcase_{model._meta.model_name}_delete', args=[obj.pk])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_admin.py:41:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\urls\base.py:98: in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <URLResolver <URLResolver list> (None:None) '^/'>
+lookup_view = 'showcase_externallink_delete', _prefix = '/', args = (1,)
+kwargs = {}
+
+    def _reverse_with_prefix(self, lookup_view, _prefix, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Don't mix *args and **kwargs in call to reverse()!")
+
+        if not self._populated:
+            self._populate()
+
+        possibilities = self.reverse_dict.getlist(lookup_view)
+
+        for possibility, pattern, defaults, converters in possibilities:
+            for result, params in possibility:
+                if args:
+                    if len(args) != len(params):
+                        continue
+                    candidate_subs = dict(zip(params, args))
+                else:
+                    if set(kwargs).symmetric_difference(params).difference(defaults):
+                        continue
+                    matches = True
+                    for k, v in defaults.items():
+                        if k in params:
+                            continue
+                        if kwargs.get(k, v) != v:
+                            matches = False
+                            break
+                    if not matches:
+                        continue
+                    candidate_subs = kwargs
+                # Convert the candidate subs to text using Converter.to_url().
+                text_candidate_subs = {}
+                match = True
+                for k, v in candidate_subs.items():
+                    if k in converters:
+                        try:
+                            text_candidate_subs[k] = converters[k].to_url(v)
+                        except ValueError:
+                            match = False
+                            break
+                    else:
+                        text_candidate_subs[k] = str(v)
+                if not match:
+                    continue
+                # WSGI provides decoded URLs, without %xx escapes, and the URL
+                # resolver operates on such URLs. First substitute arguments
+                # without quoting to build a decoded URL and look for a match.
+                # Then, if we have a match, redo the substitution with quoted
+                # arguments in order to return a properly encoded URL.
+                candidate_pat = _prefix.replace("%", "%%") + result
+                if re.search(
+                    "^%s%s" % (re.escape(_prefix), pattern),
+                    candidate_pat % text_candidate_subs,
+                ):
+                    # safe characters from `pchar` definition of RFC 3986
+                    url = quote(
+                        candidate_pat % text_candidate_subs,
+                        safe=RFC3986_SUBDELIMS + "/~:@",
+                    )
+                    # Don't allow construction of scheme relative urls.
+                    return escape_leading_slashes(url)
+        # lookup_view can be URL name or callable, but callables are not
+        # friendly in error messages.
+        m = getattr(lookup_view, "__module__", None)
+        n = getattr(lookup_view, "__name__", None)
+        if m is not None and n is not None:
+            lookup_view_s = "%s.%s" % (m, n)
+        else:
+            lookup_view_s = lookup_view
+
+        patterns = [pattern for (_, pattern, _, _) in possibilities]
+        if patterns:
+            if args:
+                arg_msg = "arguments '%s'" % (args,)
+            elif kwargs:
+                arg_msg = "keyword arguments '%s'" % kwargs
+            else:
+                arg_msg = "no arguments"
+            msg = "Reverse for '%s' with %s not found. %d pattern(s) tried: %s" % (
+                lookup_view_s,
+                arg_msg,
+                len(patterns),
+                patterns,
+            )
+        else:
+            msg = (
+                "Reverse for '%(view)s' not found. '%(view)s' is not "
+                "a valid view function or pattern name." % {"view": lookup_view_s}
+            )
+>       raise NoReverseMatch(msg)
+E       django.urls.exceptions.NoReverseMatch: Reverse for 'showcase_externallink_delete' not found. 'showcase_externallink_delete' is not a valid view function or pattern name.
+
+.venv\Lib\site-packages\django\urls\resolvers.py:831: NoReverseMatch
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+=========================== short test summary info ===========================
+FAILED tests/test_admin.py::test_us09_editorial_models_use_unfold - Assertion...
+FAILED tests/test_admin.py::test_us09_admin_edit_appears_on_next_public_request
+FAILED tests/test_admin.py::test_us10_anonymous_and_unprivileged_staff_cannot_edit[LocalizedText]
+FAILED tests/test_admin.py::test_us10_anonymous_and_unprivileged_staff_cannot_edit[Asset]
+FAILED tests/test_admin.py::test_us10_anonymous_and_unprivileged_staff_cannot_edit[Preview]
+FAILED tests/test_admin.py::test_us10_anonymous_and_unprivileged_staff_cannot_edit[FAQ]
+FAILED tests/test_admin.py::test_us10_anonymous_and_unprivileged_staff_cannot_edit[Offer]
+FAILED tests/test_admin.py::test_us10_anonymous_and_unprivileged_staff_cannot_edit[OfferBenefit]
+FAILED tests/test_admin.py::test_us10_anonymous_and_unprivileged_staff_cannot_edit[ExternalLink]
+FAILED tests/test_admin.py::test_required_editorial_records_cannot_be_deleted_even_by_superuser[LocalizedText]
+FAILED tests/test_admin.py::test_required_editorial_records_cannot_be_deleted_even_by_superuser[Asset]
+FAILED tests/test_admin.py::test_required_editorial_records_cannot_be_deleted_even_by_superuser[Preview]
+FAILED tests/test_admin.py::test_required_editorial_records_cannot_be_deleted_even_by_superuser[FAQ]
+FAILED tests/test_admin.py::test_required_editorial_records_cannot_be_deleted_even_by_superuser[Offer]
+FAILED tests/test_admin.py::test_required_editorial_records_cannot_be_deleted_even_by_superuser[OfferBenefit]
+FAILED tests/test_admin.py::test_required_editorial_records_cannot_be_deleted_even_by_superuser[ExternalLink]
+16 failed, 19 passed in 13.40s

@@ -1,0 +1,16 @@
+.........................F.....................                          [100%]
+================================== FAILURES ===================================
+_________ test_builtin_administrative_user_and_group_forms_use_unfold _________
+tests\test_admin.py:123: in test_builtin_administrative_user_and_group_forms_use_unfold
+    assert isinstance(admin.site._registry[User], ModelAdmin)
+E   AssertionError: assert False
+E    +  where False = isinstance(<UserAdmin: model=User site=UnfoldAdminSite(name='admin')>, ModelAdmin)
+============================== warnings summary ===============================
+.venv\Lib\site-packages\django\conf\__init__.py:190
+  C:\Users\cedric\Desktop\sop_ai_coding\03_REPLICATION\typinclub\.venv\Lib\site-packages\django\conf\__init__.py:190: RemovedInDjango60Warning: The FORMS_URLFIELD_ASSUME_HTTPS transitional setting is deprecated.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_admin.py::test_builtin_administrative_user_and_group_forms_use_unfold
+1 failed, 46 passed, 1 warning in 41.03s

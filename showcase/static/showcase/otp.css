@@ -1,0 +1,5 @@
+body { font-family: system-ui, sans-serif; background: #f4f7f5; color: #172c22; margin: 0; }
+main { max-width: 440px; margin: 8vh auto; padding: 32px; background: white; border-radius: 16px; }
+h1 { font-size: 1.6rem; } p { line-height: 1.6; } input { display: block; padding: 12px; margin-top: 8px; font-size: 1.4rem; max-width: 90%; }
+button { background: #15803d; color: white; border: 0; border-radius: 6px; padding: 12px; margin: 8px 8px 8px 0; cursor: pointer; }
+:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }

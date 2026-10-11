@@ -1,0 +1,8 @@
+..............................................                           [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\django\conf\__init__.py:190
+  C:\Users\cedric\Desktop\sop_ai_coding\03_REPLICATION\typinclub\.venv\Lib\site-packages\django\conf\__init__.py:190: RemovedInDjango60Warning: The FORMS_URLFIELD_ASSUME_HTTPS transitional setting is deprecated.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+46 passed, 1 warning in 31.59s

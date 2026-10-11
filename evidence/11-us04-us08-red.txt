@@ -1,0 +1,18 @@
+..................................F..                                    [100%]
+================================== FAILURES ===================================
+_____ test_us04_us08_semantic_navigation_links_resolve_to_public_sections _____
+tests\test_public.py:98: in test_us04_us08_semantic_navigation_links_resolve_to_public_sections
+    assert navigation is not None, 'The backend must provide semantic navigation'
+E   AssertionError: The backend must provide semantic navigation
+E   assert None is not None
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+============================== warnings summary ===============================
+.venv\Lib\site-packages\django\conf\__init__.py:190
+  C:\Users\cedric\Desktop\sop_ai_coding\03_REPLICATION\typinclub\.venv\Lib\site-packages\django\conf\__init__.py:190: RemovedInDjango60Warning: The FORMS_URLFIELD_ASSUME_HTTPS transitional setting is deprecated.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_public.py::test_us04_us08_semantic_navigation_links_resolve_to_public_sections
+1 failed, 36 passed, 1 warning in 20.41s

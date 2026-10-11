@@ -1,0 +1,2 @@
+Tabler Icons 3.49.0
+https://registry.npmjs.org/@tabler/icons/-/icons-3.49.0.tgz

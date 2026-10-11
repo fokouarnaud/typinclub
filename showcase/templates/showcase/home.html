@@ -1,0 +1,472 @@
+{% load static editorial %}
+<!doctype html><html lang="{{ language }}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YemX</title><meta name="description" content="{% text 'hero.subtitle' %}">
+<link rel="icon" href="{% static assets.logo.path %}">
+<link rel="stylesheet" href="{% static 'showcase/fonts/lexend.css' %}">
+<link rel="stylesheet" href="{% static 'showcase/reference.css' %}">
+<link rel="stylesheet" href="{% static 'showcase/site.css' %}">
+<script src="{% static 'showcase/site.js' %}" defer></script></head>
+<body class="bg-surface font-body text-on-surface antialiased pb-16 md:pb-0 max-w-[1440px] mx-auto"><a class="skip" data-i18n="skip.content" href="#main">{% text "skip.content" %}</a>
+
+<header class="fixed top-0 w-full max-w-[1440px] left-1/2 -translate-x-1/2 z-50 flex items-center justify-between px-6 lg:px-12 h-20 bg-transparent transition-all duration-300" id="navbar">
+<a aria-label='{% text "home.label" %}' data-i18n-aria="home.label" href="/">
+<img alt="{% text assets.logo.alt.key %}" class="h-16 w-16" data-i18n-alt="{{ assets.logo.alt.key }}" height="96" src="{% static assets.logo.path %}" width="96"/>
+</a>
+<div class="hidden md:flex items-center gap-6">
+<nav aria-label='{% text "nav.main" %}' class="flex items-center gap-8" data-i18n-aria="nav.main">
+<a class="text-on-surface-variant hover:text-primary font-medium transition-colors duration-200" data-i18n="nav.features" href="#features">{% text "nav.features" %}</a>
+<a class="text-on-surface-variant hover:text-primary font-medium transition-colors duration-200" data-i18n="nav.how" href="#how-it-works">{% text "nav.how" %}</a>
+<a class="text-on-surface-variant hover:text-primary font-medium transition-colors duration-200" data-i18n="nav.pricing" href="#pricing">{% text "nav.pricing" %}</a>
+<a class="nav-faq text-on-surface-variant hover:text-primary font-medium" data-i18n="nav.faq" href="#faq">{% text "nav.faq" %}</a><a class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-semibold hover:bg-emerald-700 active:scale-[0.97] transition-all duration-200 shadow-md" data-i18n="nav.download" href="#download">{% text "nav.download" %}</a>
+</nav>
+<div class="lang-toggle">
+<a class="language-option" data-language="fr" href="?lang=fr" id="lang-fr" lang="fr">FR</a>
+<a class="language-option" data-language="en" href="?lang=en" id="lang-en" lang="en">EN</a>
+</div>
+</div>
+<div class="md:hidden flex items-center gap-3">
+<div class="lang-toggle">
+<a class="language-option" data-language="fr" href="?lang=fr" lang="fr">FR</a>
+<a class="language-option" data-language="en" href="?lang=en" lang="en">EN</a>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label='{% text "menu.open" %}' class="text-on-surface p-1" data-i18n-aria="menu.open" id="menu-toggle" type="button">
+<svg aria-hidden="true" class="icon text-3xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#menu"></use></svg>
+</button>
+</div>
+</header>
+
+<div aria-label='{% text "nav.mobile" %}' class="mobile-overlay fixed inset-0 z-[60]" data-i18n-aria="nav.mobile" hidden="" id="mobile-menu">
+<div class="absolute inset-0 bg-black/40" id="mobile-menu-backdrop"></div>
+<div class="mobile-menu-panel absolute top-0 left-0 right-0 bg-white shadow-xl">
+
+<div class="flex items-center justify-between px-6 h-20">
+<a class="flex items-center gap-2.5" href="/">
+<img alt="{% text assets.logo.alt.key %}" class="h-10 w-10" data-i18n-alt="{{ assets.logo.alt.key }}" height="40" src="{% static assets.logo.path %}" width="40"/>
+<span class="text-primary font-bold text-xl tracking-tight">YemX</span>
+</a>
+<button aria-label='{% text "menu.close" %}' class="p-2 -mr-2 rounded-lg hover:bg-surface-container transition-colors" data-i18n-aria="menu.close" id="menu-close" type="button">
+<svg aria-hidden="true" class="icon text-2xl text-on-surface" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#close"></use></svg>
+</button>
+</div>
+
+<nav aria-label='{% text "nav.mobile" %}' class="px-6 pb-2" data-i18n-aria="nav.mobile">
+<a class="flex items-center gap-3 py-4 border-b border-outline-variant/50 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#features"><svg aria-hidden="true" class="icon text-xl text-primary" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#apps"></use></svg><span data-i18n="nav.features">{% text "nav.features" %}</span></a>
+<a class="flex items-center gap-3 py-4 border-b border-outline-variant/50 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#how-it-works"><svg aria-hidden="true" class="icon text-xl text-primary" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#rocket_launch"></use></svg><span data-i18n="nav.how">{% text "nav.how" %}</span></a>
+<a class="flex items-center gap-3 py-4 border-b border-outline-variant/50 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#pricing"><svg aria-hidden="true" class="icon text-xl text-primary" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#payments"></use></svg><span data-i18n="nav.pricing">{% text "nav.pricing" %}</span></a>
+<a class="flex items-center gap-3 py-4 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#faq">
+<svg aria-hidden="true" class="icon text-xl text-primary" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#help"></use></svg><span data-i18n="nav.faq">{% text "nav.faq" %}</span></a>
+</nav>
+
+<div class="px-6 pt-2 pb-6">
+<a class="w-full h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-emerald-700 active:scale-[0.97] transition-all duration-200" href="#download">
+<svg aria-hidden="true" class="icon text-xl mr-2" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#download"></use></svg>
+<span data-i18n="nav.download">{% text "nav.download" %}</span>
+</a>
+</div>
+</div>
+</div>
+<main id="main" tabindex="-1">
+
+<section class="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-28 px-6 lg:px-24" id="intro">
+<div class="absolute top-20 right-0 w-[400px] h-[400px] bg-primary-fixed/15 rounded-full blur-[100px] -z-10"></div>
+<div class="absolute bottom-0 left-0 w-[250px] h-[250px] bg-secondary-container/25 rounded-full blur-[80px] -z-10"></div>
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+<div class="flex-1 text-center md:text-left">
+<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight leading-[1.12] mb-6"><span class="text-primary font-extrabold text-5xl md:text-6xl lg:text-7xl tracking-tight mb-6 block md:mb-8">YemX</span><span data-hero="lead">{% hero_line "lead" %}</span> <span class="text-primary italic" data-hero="emphasis">{% hero_line "emphasis" %}</span></h1>
+<p class="text-base sm:text-lg md:text-xl text-on-surface-variant mb-8 md:mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed" data-i18n="hero.subtitle">{% text "hero.subtitle" %}</p>
+<div class="flex flex-col items-center md:items-start gap-5">
+<div class="flex flex-col sm:flex-row gap-3">
+<a aria-label="{% text links.play.label.key %}" class="store-btn cta-pulse" data-i18n-aria="{{ links.play.label.key }}" data-link="play" href="{{ links.play.url }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.25-.84-.76-.84-1.35z" fill="#00c3ff"></path>
+<path d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27z" fill="#ff3a44"></path>
+<path d="M20.16 10.81c.34.27.59.68.59 1.19 0 .51-.23.9-.58 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.28 1.31z" fill="#ffce00"></path>
+<path d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z" fill="#00f076"></path>
+</svg>
+<span class="store-btn-label">
+<span class="store-btn-top" data-i18n="store.available">{% text "store.available" %}</span>
+<span class="store-btn-bottom" data-i18n="{{ links.play.label.key }}">{% text links.play.label.key %}</span>
+</span>
+</a>
+<span aria-label='{% text "store.apple" %}' class="store-btn store-btn-soon" data-i18n-aria="store.apple" data-store="apple">
+<svg aria-hidden="true" fill="currentColor" focusable="false" viewbox="0 0 384 512">
+<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path>
+</svg>
+<span class="store-btn-label">
+<span class="store-btn-top" data-i18n="store.soon">{% text "store.soon" %}</span>
+<span class="store-btn-bottom">App Store</span>
+</span>
+</span>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-x-6 gap-y-2">
+<a class="inline-flex items-center gap-1.5 text-primary font-semibold text-sm hover:underline underline-offset-4" href="#download">
+<svg aria-hidden="true" class="icon text-lg" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#download"></use></svg>
+<span data-i18n="hero.apk">{% text "hero.apk" %}</span>
+</a>
+<div class="flex items-center gap-2 text-on-surface-variant font-medium text-sm">
+<svg aria-hidden="true" class="icon text-xl text-primary" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#verified"></use></svg>
+<span data-i18n="hero.badge">{% text "hero.badge" %}</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="flex-1 flex justify-center mt-8 md:mt-0">
+<div class="relative w-[280px] h-[578px] md:w-[320px] md:h-[660px] bg-gray-900 rounded-[2.5rem] p-[10px] md:p-3 shadow-xl shadow-black/25 ring-1 ring-gray-700/50">
+<div class="absolute top-[14px] md:top-4 left-1/2 -translate-x-1/2 w-2.5 h-2.5 md:w-3 md:h-3 bg-gray-800 rounded-full z-10 ring-[1.5px] ring-gray-700"></div>
+<div class="absolute -right-[14px] md:-right-[15px] top-[120px] md:top-[140px] w-[3px] h-[46px] bg-gray-900 rounded-r-lg"></div>
+<div class="absolute -left-[14px] md:-left-[15px] top-[100px] md:top-[110px] w-[3px] h-[32px] bg-gray-900 rounded-l-lg"></div>
+<div class="absolute -left-[14px] md:-left-[15px] top-[140px] md:top-[155px] w-[3px] h-[32px] bg-gray-900 rounded-l-lg"></div>
+<div class="w-full h-full rounded-[2rem] overflow-hidden bg-surface">
+<img alt="{% text assets.dashboard.alt.key %}" class="w-full h-full object-cover object-top" data-i18n-alt="{{ assets.dashboard.alt.key }}" loading="eager" src="{% static assets.dashboard.path %}"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 bg-surface-container-low px-6" id="problems">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-headline text-center mb-12 md:mb-16 reveal" data-i18n="problem.title">{% text "problem.title" %}</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+<div class="bg-white p-7 md:p-8 rounded-2xl shadow-sm card-hover reveal reveal-delay-1">
+<div class="w-12 h-12 md:w-14 md:h-14 bg-error-container rounded-2xl flex items-center justify-center text-error mb-4">
+<svg aria-hidden="true" class="icon text-2xl md:text-3xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#edit_off"></use></svg>
+</div>
+<h3 class="font-bold text-lg md:text-xl mb-2" data-i18n="problem.notebook.title">{% text "problem.notebook.title" %}</h3>
+<p class="text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="problem.notebook.desc">{% text "problem.notebook.desc" %}</p>
+</div>
+<div class="bg-white p-7 md:p-8 rounded-2xl shadow-sm card-hover reveal reveal-delay-2">
+<div class="w-12 h-12 md:w-14 md:h-14 bg-tertiary-fixed rounded-2xl flex items-center justify-center text-tertiary mb-4">
+<svg aria-hidden="true" class="icon text-2xl md:text-3xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#calculate"></use></svg>
+</div>
+<h3 class="font-bold text-lg md:text-xl mb-2" data-i18n="problem.calc.title">{% text "problem.calc.title" %}</h3>
+<p class="text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="problem.calc.desc">{% text "problem.calc.desc" %}</p>
+</div>
+<div class="bg-white p-7 md:p-8 rounded-2xl shadow-sm card-hover reveal reveal-delay-3">
+<div class="w-12 h-12 md:w-14 md:h-14 bg-outline-variant/30 rounded-2xl flex items-center justify-center text-slate-700 mb-4">
+<svg aria-hidden="true" class="icon text-2xl md:text-3xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#person_off"></use></svg>
+</div>
+<h3 class="font-bold text-lg md:text-xl mb-2" data-i18n="problem.debt.title">{% text "problem.debt.title" %}</h3>
+<p class="text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="problem.debt.desc">{% text "problem.debt.desc" %}</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 px-6 lg:px-24" id="features">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-14 md:mb-20 reveal">
+<span class="text-primary font-bold tracking-widest text-xs uppercase" data-i18n="features.tag">{% text "features.tag" %}</span>
+<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-headline mt-3" data-i18n="features.title">{% text "features.title" %}</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-6 gap-5 md:gap-6">
+
+<div class="md:col-span-3 bg-secondary-container/20 p-8 md:p-10 rounded-2xl card-hover reveal">
+<svg aria-hidden="true" class="icon text-3xl md:text-4xl text-primary mb-3" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#bolt"></use></svg>
+<h3 class="text-xl md:text-2xl font-bold mb-3" data-i18n="features.sales.title">{% text "features.sales.title" %}</h3>
+<p class="text-on-surface-variant md:text-lg leading-relaxed" data-i18n="features.sales.desc">{% text "features.sales.desc" %}</p>
+<div class="mt-6 bg-white/60 rounded-xl overflow-hidden flex items-center justify-center p-4">
+<img alt="{% text assets.dashboard.alt.key %}" class="w-48 md:w-56 rounded-xl shadow-md" data-i18n-alt="{{ assets.dashboard.alt.key }}" loading="lazy" src="{% static assets.dashboard.path %}"/>
+</div>
+</div>
+
+<div class="md:col-span-3 bg-surface-container-high p-8 md:p-10 rounded-2xl card-hover reveal flex flex-col">
+<svg aria-hidden="true" class="icon text-3xl md:text-4xl text-primary mb-3" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#inventory_2"></use></svg>
+<h3 class="text-xl md:text-2xl font-bold mb-3" data-i18n="features.stock.title">{% text "features.stock.title" %}</h3>
+<p class="text-on-surface-variant md:text-lg leading-relaxed" data-i18n="features.stock.desc">{% text "features.stock.desc" %}</p>
+<div class="mt-6 bg-white/60 rounded-xl overflow-hidden flex items-center justify-center p-4">
+<img alt="{% text assets.stock.alt.key %}" class="w-48 md:w-56 rounded-xl shadow-md" data-i18n-alt="{{ assets.stock.alt.key }}" loading="lazy" src="{% static assets.stock.path %}"/>
+</div>
+</div>
+
+<div class="md:col-span-2 bg-surface-container p-7 md:p-8 rounded-2xl card-hover reveal reveal-delay-1">
+<svg aria-hidden="true" class="icon text-3xl text-primary mb-3" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#account_balance_wallet"></use></svg>
+<h4 class="text-lg md:text-xl font-bold mb-2" data-i18n="features.credits.title">{% text "features.credits.title" %}</h4>
+<p class="text-on-surface-variant text-sm md:text-base" data-i18n="features.credits.desc">{% text "features.credits.desc" %}</p>
+</div>
+
+<div class="md:col-span-2 bg-surface-container p-7 md:p-8 rounded-2xl card-hover reveal reveal-delay-2">
+<svg aria-hidden="true" class="icon text-3xl text-primary mb-3" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#cloud_off"></use></svg>
+<h4 class="text-lg md:text-xl font-bold mb-2" data-i18n="features.offline.title">{% text "features.offline.title" %}</h4>
+<p class="text-on-surface-variant text-sm md:text-base" data-i18n="features.offline.desc">{% text "features.offline.desc" %}</p>
+</div>
+
+<div class="md:col-span-2 bg-surface-container p-7 md:p-8 rounded-2xl card-hover reveal reveal-delay-3">
+<svg aria-hidden="true" class="icon text-3xl text-primary mb-3" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#store"></use></svg>
+<h4 class="text-lg md:text-xl font-bold mb-2" data-i18n="features.multi.title">{% text "features.multi.title" %}</h4>
+<p class="text-on-surface-variant text-sm md:text-base" data-i18n="features.multi.desc">{% text "features.multi.desc" %}</p>
+</div>
+
+<div class="md:col-span-6 bg-slate-900 text-white p-8 md:p-10 rounded-2xl flex flex-col sm:flex-row items-center gap-6 md:gap-8 reveal">
+<div class="flex-1">
+<h3 class="text-xl md:text-2xl font-bold mb-3" data-i18n="features.pdf.title">{% text "features.pdf.title" %}</h3>
+<p class="text-slate-400 leading-relaxed text-sm md:text-base" data-i18n="features.pdf.desc">{% text "features.pdf.desc" %}</p>
+</div>
+<div class="flex items-center gap-4 shrink-0">
+<img alt="{% text assets.report.alt.key %}" class="w-28 md:w-36 rounded-lg shadow-lg border border-white/10" data-i18n-alt="{{ assets.report.alt.key }}" loading="lazy" src="{% static assets.report.path %}"/>
+<a class="bg-white text-slate-900 px-6 md:px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-slate-100 active:scale-[0.97] transition-all duration-200 text-sm md:text-base shrink-0" data-link="pdf" href="{{ links.pdf.url }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" class="icon" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#picture_as_pdf"></use></svg> <span data-i18n="{{ links.pdf.label.key }}">{% text links.pdf.label.key %}</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 px-6 bg-white" id="app-preview">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-12 md:mb-16 reveal">
+<span class="text-primary font-bold tracking-widest text-xs uppercase" data-i18n="preview.tag">{% text "preview.tag" %}</span>
+<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-headline mt-3" data-i18n="preview.title">{% text "preview.title" %}</h2>
+</div>
+<div class="flex gap-8 md:gap-10 md:justify-center overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide">{% for preview in previews %}
+<figure class="text-center shrink-0 snap-center preview-phone">
+<button aria-label="{% text 'preview.open' %}: {% text preview.caption.key %}" class="preview-trigger" data-preview-index="{{ forloop.counter0 }}" type="button">
+<span class="phone-preview relative block w-[220px] h-[454px] bg-gray-900 rounded-[2rem] p-2 shadow-lg shadow-black/20 ring-1 ring-gray-700/50 mb-4 transition-transform duration-200 hover:scale-[1.03]">
+<span class="absolute top-[10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full z-10 ring-1 ring-gray-700"></span>
+<span class="block w-full h-full rounded-[1.5rem] overflow-hidden bg-surface"><img alt="{% text preview.asset.alt.key %}" class="w-full h-full object-cover object-top" data-i18n-alt="{{ preview.asset.alt.key }}" loading="lazy" src="{% static preview.asset.path %}"/></span></span></button>
+<figcaption class="text-sm font-semibold text-on-surface" data-i18n="{{ preview.caption.key }}">{% text preview.caption.key %}</figcaption></figure>{% endfor %}</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 bg-surface-container-low px-6" id="how-it-works">
+<div class="max-w-5xl mx-auto">
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-14 md:mb-16 reveal" data-i18n="steps.title">{% text "steps.title" %}</h2>
+<div class="relative">
+<div class="hidden md:block absolute top-8 left-[16.66%] right-[16.66%] h-0.5 bg-secondary-container z-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 relative z-10">
+<div class="text-center space-y-4 md:space-y-6 step-connector reveal reveal-delay-1">
+<div class="w-14 h-14 md:w-16 md:h-16 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl md:text-2xl mx-auto shadow-lg">1</div>
+<h3 class="font-bold text-lg md:text-xl" data-i18n="steps.s1.title">{% text "steps.s1.title" %}</h3>
+<p class="text-on-surface-variant text-sm md:text-base" data-i18n="steps.s1.desc">{% text "steps.s1.desc" %}</p>
+</div>
+<div class="text-center space-y-4 md:space-y-6 step-connector reveal reveal-delay-2">
+<div class="w-14 h-14 md:w-16 md:h-16 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl md:text-2xl mx-auto shadow-lg">2</div>
+<h3 class="font-bold text-lg md:text-xl" data-i18n="steps.s2.title">{% text "steps.s2.title" %}</h3>
+<p class="text-on-surface-variant text-sm md:text-base" data-i18n="steps.s2.desc">{% text "steps.s2.desc" %}</p>
+</div>
+<div class="text-center space-y-4 md:space-y-6 step-connector reveal reveal-delay-3">
+<div class="w-14 h-14 md:w-16 md:h-16 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl md:text-2xl mx-auto shadow-lg">3</div>
+<h3 class="font-bold text-lg md:text-xl" data-i18n="steps.s3.title">{% text "steps.s3.title" %}</h3>
+<p class="text-on-surface-variant text-sm md:text-base" data-i18n="steps.s3.desc">{% text "steps.s3.desc" %}</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 px-6 lg:px-24 bg-white" id="pricing">
+<div class="max-w-5xl mx-auto">
+<div class="text-center mb-12 md:mb-16 reveal">
+<h2 class="text-3xl md:text-4xl font-bold font-headline mb-4" data-i18n="pricing.title">{% text "pricing.title" %}</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">{% for offer in offers %}
+<article class="p-8 md:p-10 rounded-3xl bg-white relative overflow-hidden card-hover offer-card {% if offer.highlighted %}border-4 border-primary shadow-xl{% else %}border border-outline-variant shadow-sm{% endif %}">
+{% if offer.highlighted %}<div class="absolute top-0 right-0 bg-primary text-on-primary py-1.5 px-4 rounded-bl-xl font-bold text-xs" data-i18n="pricing.popular">{% text 'pricing.popular' %}</div>{% endif %}
+<h3 class="text-2xl font-bold mb-2" data-i18n="{{ offer.name.key }}">{% text offer.name.key %}</h3>
+<div class="flex items-baseline gap-1 mb-6 md:mb-8"><span class="text-3xl md:text-4xl font-extrabold tracking-tight">{{ offer.price }} FCFA</span> <span class="text-on-surface-variant text-sm" data-i18n="{{ offer.period.key }}">{% text offer.period.key %}</span></div>
+<ul class="space-y-3 md:space-y-4 mb-8 md:mb-10">{% for benefit in offer.benefits.all %}<li class="flex items-center gap-3 text-sm md:text-base"><svg aria-hidden="true" class="icon text-primary text-xl"><use href="{% static 'showcase/icons/sprite.svg' %}#check_circle"></use></svg><span data-i18n="{{ benefit.text.key }}">{% text benefit.text.key %}</span></li>{% endfor %}</ul>
+<a class="w-full h-12 md:h-14 rounded-full flex items-center justify-center font-bold active:scale-[0.97] transition-all duration-200 text-sm md:text-base {% if offer.highlighted %}bg-primary text-on-primary shadow-lg hover:bg-emerald-700{% else %}bg-surface-container-highest text-on-surface border border-primary/20 hover:bg-primary hover:text-on-primary{% endif %}" data-i18n="{% if offer.external_link %}{{ offer.external_link.label.key }}{% else %}pricing.{{ offer.code }}.cta{% endif %}" href="{{ offer.cta_url }}" rel="noopener noreferrer" target="{{ offer.external_link|yesno:'_blank,_self' }}">{% if offer.external_link %}{% text offer.external_link.label.key %}{% else %}{% field_text 'pricing' offer.code 'cta' %}{% endif %}</a>
+</article>{% endfor %}</div>
+</div>
+</section>
+
+<section class="bg-primary text-on-primary py-12 md:py-16" id="stats">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
+<div class="reveal reveal-delay-1">
+<div class="text-3xl md:text-5xl font-bold mb-1 counter">100%</div>
+<div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium" data-i18n="stats.offline">{% text "stats.offline" %}</div>
+</div>
+<div class="reveal reveal-delay-2">
+<div class="text-3xl md:text-5xl font-bold mb-1 counter">2 min</div>
+<div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium" data-i18n="stats.shop">{% text "stats.shop" %}</div>
+</div>
+<div class="reveal reveal-delay-3">
+<div class="text-3xl md:text-5xl font-bold mb-1 counter">3 sec</div>
+<div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium" data-i18n="stats.sale">{% text "stats.sale" %}</div>
+</div>
+<div class="reveal reveal-delay-3">
+<div class="text-3xl md:text-5xl font-bold mb-1 counter">0 FCFA</div>
+<div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium" data-i18n="stats.start">{% text "stats.start" %}</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 px-6 bg-surface-container-low" id="faq">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 reveal" data-i18n="faq.title">{% text "faq.title" %}</h2>
+<div class="space-y-3 md:space-y-4">{% for faq in faqs %}<details class="faq-item bg-white rounded-xl overflow-hidden shadow-sm">
+<summary aria-expanded="false" class="faq-question w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg"><span data-i18n="{{ faq.question.key }}">{% text faq.question.key %}</span><svg aria-hidden="true" class="icon faq-icon text-primary shrink-0 ml-4"><use href="{% static 'showcase/icons/sprite.svg' %}#expand_more"></use></svg></summary>
+<div class="faq-answer px-6 text-on-surface-variant text-sm md:text-base leading-relaxed"><p data-i18n="{{ faq.answer.key }}">{% text faq.answer.key %}</p></div></details>{% endfor %}</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 px-6 lg:px-24" id="download">
+<div class="max-w-5xl mx-auto bg-slate-900 text-white rounded-3xl overflow-hidden shadow-2xl reveal">
+<div class="flex flex-col md:flex-row">
+<div class="flex-1 p-8 md:p-14 lg:p-16">
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 leading-tight" data-i18n="cta.title">{% text "cta.title" %}</h2>
+<p class="text-slate-400 mb-8 md:text-lg leading-relaxed" data-i18n="cta.subtitle">{% text "cta.subtitle" %}</p>
+
+<div class="flex flex-col sm:flex-row gap-3">
+<a aria-label="{% text links.play.label.key %}" class="store-btn store-btn-light" data-i18n-aria="{{ links.play.label.key }}" data-link="play" href="{{ links.play.url }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.25-.84-.76-.84-1.35z" fill="#00c3ff"></path>
+<path d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27z" fill="#ff3a44"></path>
+<path d="M20.16 10.81c.34.27.59.68.59 1.19 0 .51-.23.9-.58 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.28 1.31z" fill="#ffce00"></path>
+<path d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z" fill="#00f076"></path>
+</svg>
+<span class="store-btn-label">
+<span class="store-btn-top" data-i18n="store.available">{% text "store.available" %}</span>
+<span class="store-btn-bottom" data-i18n="{{ links.play.label.key }}">{% text links.play.label.key %}</span>
+</span>
+</a>
+<span aria-label='{% text "store.apple" %}' class="store-btn store-btn-soon store-btn-soon-dark" data-i18n-aria="store.apple" data-store="apple">
+<svg aria-hidden="true" fill="currentColor" focusable="false" viewbox="0 0 384 512">
+<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path>
+</svg>
+<span class="store-btn-label">
+<span class="store-btn-top" data-i18n="store.soon">{% text "store.soon" %}</span>
+<span class="store-btn-bottom">App Store</span>
+</span>
+</span>
+</div>
+
+<div class="or-divider text-slate-500 my-7 max-w-sm" data-i18n="cta.or">{% text "cta.or" %}</div>
+
+<a class="inline-flex items-center gap-3 bg-primary text-on-primary px-8 md:px-10 py-3.5 md:py-4 rounded-full font-bold text-lg hover:bg-emerald-600 transition-all duration-200 shadow-lg active:scale-[0.97]" data-apk-modern="" data-link="apk" href="{{ links.apk.url }}">
+<svg aria-hidden="true" class="icon text-2xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#download"></use></svg>
+<span data-i18n="{{ links.apk.label.key }}">{% text links.apk.label.key %}</span>
+</a>
+<div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs md:text-sm">
+<span class="text-slate-500"><span data-i18n="cta.version">{% text "cta.version" %}</span> <span data-version-number="">—</span></span>
+<a class="text-slate-400 hover:text-primary underline underline-offset-2 transition-colors" data-apk-old="" data-i18n="cta.older" data-link="apk-older" href="{{ links.apk.url }}">{% text "cta.older" %}</a>
+</div>
+<div class="mt-6 flex items-start gap-3">
+<svg aria-hidden="true" class="icon text-emerald-500 mt-0.5 text-lg" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#info"></use></svg>
+<p class="text-xs md:text-sm text-slate-400" data-i18n="cta.note">{% text "cta.note" %}</p>
+</div>
+</div>
+<div class="hidden sm:flex w-full md:w-1/3 bg-primary/10 items-center justify-center p-6 md:p-8">
+<div class="relative w-[200px] h-[412px] bg-gray-900 rounded-[1.8rem] p-2 shadow-lg shadow-black/20 ring-1 ring-gray-700/50">
+<div class="absolute top-[10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full z-10 ring-1 ring-gray-700"></div>
+<div class="w-full h-full rounded-[1.4rem] overflow-hidden bg-surface">
+<img alt="{% text assets.stock.alt.key %}" class="w-full h-full object-cover object-top" data-i18n-alt="{{ assets.stock.alt.key }}" loading="lazy" src="{% static assets.stock.path %}"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 md:py-24 px-6 text-center border-t border-surface-container-high" id="about">
+<div class="max-w-3xl mx-auto reveal">
+<img alt="{% text assets.logo.alt.key %}" class="h-14 w-14 mx-auto mb-5" data-i18n-alt="{{ assets.logo.alt.key }}" height="56" src="{% static assets.logo.path %}" width="56"/>
+<h2 class="text-2xl md:text-3xl font-bold mb-4" data-i18n="about.title">{% text "about.title" %}</h2>
+<p class="text-base md:text-lg text-on-surface-variant leading-relaxed mb-4" data-i18n="about.desc">{% text "about.desc" %}</p>
+<p class="text-base md:text-lg text-on-surface-variant leading-relaxed" data-i18n="about.mission">{% text "about.mission" %}</p>
+</div>
+</section>
+</main>
+
+<dialog aria-labelledby="preview-modal-label" aria-modal="true" class="preview-modal" id="preview-modal" role="dialog">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="preview-modal-backdrop"></div>
+<button aria-label='{% text "preview.close" %}' class="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" data-i18n-aria="preview.close" id="preview-modal-close" type="button">
+<svg aria-hidden="true" class="icon text-white text-2xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#close"></use></svg>
+</button>
+<button aria-label='{% text "preview.previous" %}' class="absolute left-2 md:left-6 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" data-i18n-aria="preview.previous" id="preview-modal-prev" type="button">
+<svg aria-hidden="true" class="icon text-white text-2xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#chevron_left"></use></svg>
+</button>
+<button aria-label='{% text "preview.next" %}' class="absolute right-2 md:right-6 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" data-i18n-aria="preview.next" id="preview-modal-next" type="button">
+<svg aria-hidden="true" class="icon text-white text-2xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#chevron_right"></use></svg>
+</button>
+<div class="relative z-10 flex flex-col items-center" id="preview-modal-content">
+<div class="relative w-[280px] h-[578px] md:w-[340px] md:h-[700px] bg-gray-900 rounded-[2.5rem] p-[10px] md:p-3 shadow-2xl shadow-black/50 ring-1 ring-gray-700/50">
+<div class="absolute top-[14px] md:top-4 left-1/2 -translate-x-1/2 w-2.5 h-2.5 md:w-3 md:h-3 bg-gray-800 rounded-full z-10 ring-[1.5px] ring-gray-700"></div>
+<div class="w-full h-full rounded-[2rem] overflow-hidden bg-surface">
+<img alt="{% text assets.dashboard.alt.key %}" class="w-full h-full object-cover object-top" id="preview-modal-img" src="{% static assets.dashboard.path %}"/>
+</div>
+</div>
+<p class="text-white font-semibold text-base md:text-lg mt-5" id="preview-modal-label">{% text "preview.dashboard" %}</p>
+<div class="flex gap-2 mt-4" id="preview-modal-dots"></div><p aria-live="polite" class="text-white text-sm mt-4" id="preview-modal-position"></p>
+</div>
+</dialog>
+
+<footer class="bg-surface-container-highest pt-14 md:pt-16 pb-8 px-6">
+<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2.5 mb-4 md:mb-6">
+<img alt="{% text assets.logo.alt.key %}" class="h-7 w-7" data-i18n-alt="{{ assets.logo.alt.key }}" height="28" src="{% static assets.logo.path %}" width="28"/>
+<span class="text-primary font-bold text-xl tracking-tight">YemX</span>
+</div>
+<p class="text-on-surface-variant text-sm" data-i18n="footer.tagline">{% text "footer.tagline" %}</p>
+</div>
+<div>
+<h4 class="font-bold mb-4 md:mb-6 text-sm" data-i18n="footer.links">{% text "footer.links" %}</h4>
+<nav aria-label='{% text "nav.footer" %}' data-i18n-aria="nav.footer">
+<ul class="space-y-3 text-on-surface-variant text-sm">
+<li><a class="hover:text-primary transition-colors duration-200" data-i18n="nav.features" href="#features">{% text "nav.features" %}</a></li>
+<li><a class="hover:text-primary transition-colors duration-200" data-i18n="footer.install" href="#how-it-works">{% text "footer.install" %}</a></li>
+<li><a class="hover:text-primary transition-colors duration-200" data-i18n="nav.pricing" href="#pricing">{% text "nav.pricing" %}</a></li>
+<li><a class="hover:text-primary transition-colors duration-200" href="#faq"><span data-i18n="nav.faq">{% text "nav.faq" %}</span></a></li>
+<li><a aria-label="{% text links.play.label.key %}" class="hover:text-primary transition-colors duration-200" data-i18n="{{ links.play.label.key }}" data-i18n-aria="{{ links.play.label.key }}" data-link="play" href="{{ links.play.url }}" rel="noopener" target="_blank">{% text links.play.label.key %}</a></li>
+</ul>
+</nav>
+</div>
+<div>
+<h4 class="font-bold mb-4 md:mb-6 text-sm" data-i18n="footer.support">{% text "footer.support" %}</h4>
+<ul class="space-y-3 text-on-surface-variant text-sm">
+<li class="flex items-center gap-2">
+<svg aria-hidden="true" class="icon text-base" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#mail"></use></svg>
+            contact@yemxapp.com
+          </li>
+<li class="flex items-center gap-2">
+<svg aria-hidden="true" class="icon text-base" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#call"></use></svg>
+            +237 694 208 641
+          </li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 md:mb-6 text-sm" data-i18n="footer.follow">{% text "footer.follow" %}</h4>
+<div class="flex gap-3">
+<a aria-label="{% text links.facebook.label.key %}" class="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:text-primary shadow-sm transition-colors duration-200" data-i18n-aria="{{ links.facebook.label.key }}" data-link="facebook" href="{{ links.facebook.url }}" rel="noopener" target="_blank">
+<svg aria-hidden="true" class="icon text-lg" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#group"></use></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto border-t border-outline-variant pt-6">
+<nav aria-label='{% text "nav.legal" %}' class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4 text-xs text-on-surface-variant" data-i18n-aria="nav.legal">
+<a class="hover:text-primary transition-colors duration-200" data-i18n="{{ links.mentions.label.key }}" data-legal="" data-link="mentions" href="{{ links.mentions.url }}">{% text links.mentions.label.key %}</a>
+<a class="hover:text-primary transition-colors duration-200" data-i18n="{{ links.privacy.label.key }}" data-legal="" data-link="privacy" href="{{ links.privacy.url }}">{% text links.privacy.label.key %}</a>
+<a class="hover:text-primary transition-colors duration-200" data-i18n="{{ links.terms.label.key }}" data-legal="" data-link="terms" href="{{ links.terms.url }}">{% text links.terms.label.key %}</a>
+<a class="hover:text-primary transition-colors duration-200" data-i18n="{{ links.sales.label.key }}" data-legal="" data-link="sales" href="{{ links.sales.url }}">{% text links.sales.label.key %}</a>
+</nav>
+<p class="text-center text-xs text-on-surface-variant">
+        © <span id="year">2026</span> YemX. <span data-i18n="footer.rights">{% text "footer.rights" %}</span>
+</p>
+</div>
+</footer>
+
+<div id="bottom-nav" class="md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] z-50 flex justify-around items-center px-4 h-14 bg-white/95 backdrop-blur-sm border-t border-slate-100 shadow-lg">
+<a class="flex flex-col items-center justify-center text-slate-400 px-4 py-1 hover:text-primary active:scale-[0.95] transition-all" href="#features">
+<svg aria-hidden="true" class="icon text-xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#bolt"></use></svg>
+<span class="text-[10px] font-medium" data-i18n="bottomnav.features">{% text "bottomnav.features" %}</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary/10 text-primary rounded-2xl px-5 py-1 active:scale-[0.95] transition-all" href="#download">
+<svg aria-hidden="true" class="icon text-xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#download"></use></svg>
+<span class="text-[10px] font-medium" data-i18n="bottomnav.install">{% text "bottomnav.install" %}</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-4 py-1 hover:text-primary active:scale-[0.95] transition-all" href="#pricing">
+<svg aria-hidden="true" class="icon text-xl" focusable="false"><use href="{% static 'showcase/icons/sprite.svg' %}#payments"></use></svg>
+<span class="text-[10px] font-medium" data-i18n="nav.pricing">{% text "nav.pricing" %}</span>
+</a>
+</div>
+
+
+
+
+
+</body>{{ translations|json_script:'editorial-translations' }}</html>

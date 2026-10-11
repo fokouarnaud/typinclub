@@ -1,0 +1,21 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_________ test_page_has_local_static_assets_and_interaction_controls __________
+tests\test_templates.py:10: in test_page_has_local_static_assets_and_interaction_controls
+    assert html.select_one('#menu-toggle') is not None
+E   assert None is not None
+E    +  where None = select_one('#menu-toggle')
+E    +    where select_one = \n<!DOCTYPE html>\n\n<html lang="fr">\n<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" na.../yemxapp.com/cgu.html">Termes et Conditions</a></nav><p>� 2026 YemX. Tous droits r�serv�s.</p></footer>\n</body></html>\n.select_one
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+________ test_localized_accessible_labels_and_safe_translation_payload ________
+tests\test_templates.py:27: in test_localized_accessible_labels_and_safe_translation_payload
+    assert html.select_one('#menu-toggle')['aria-label'] == 'Open menu'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: 'NoneType' object is not subscriptable
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+=========================== short test summary info ===========================
+FAILED tests/test_templates.py::test_page_has_local_static_assets_and_interaction_controls
+FAILED tests/test_templates.py::test_localized_accessible_labels_and_safe_translation_payload
+2 failed in 1.24s

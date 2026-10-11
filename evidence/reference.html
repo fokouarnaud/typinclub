@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr" style="background:#f6f8f7">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>YemX — Le cahier numérique des commerçants du Cameroun | Startup camerounaise</title>
+  <meta name="description" content="YemX est la startup camerounaise qui digitalise le cahier des commerçants. Application gratuite de gestion des ventes, stocks et crédits clients, conçue pour le secteur informel au Cameroun. 100% hors-ligne. Disponible sur Google Play, bientôt sur l'App Store." />
+  <meta name="author" content="YemX" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://yemxapp.com/" />
+  <link rel="alternate" hreflang="fr-CM" href="https://yemxapp.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://yemxapp.com/" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#16a34a" />
+
+  <!-- Geo targeting (Cameroun / Yaoundé) -->
+  <meta name="geo.region" content="CM-CE" />
+  <meta name="geo.placename" content="Yaoundé, Cameroun" />
+  <meta name="geo.position" content="3.848;11.502" />
+  <meta name="ICBM" content="3.848, 11.502" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yemxapp.com/" />
+  <meta property="og:title" content="YemX — Le cahier numérique des commerçants du Cameroun" />
+  <meta property="og:description" content="Startup camerounaise — application gratuite de gestion des ventes, stocks et crédits clients pour les commerçants du secteur informel. 100% hors-ligne. Disponible sur Google Play." />
+  <meta property="og:image" content="https://yemxapp.com/logo-yemx/OG-Yemx.webp" />
+  <meta property="og:locale" content="fr_CM" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:site_name" content="YemX" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="YemX — Le cahier numérique des commerçants du Cameroun" />
+  <meta name="twitter:description" content="Startup camerounaise — application gratuite de gestion des ventes, stocks et crédits clients pour commerçants du secteur informel. 100% hors-ligne. Disponible sur Google Play." />
+  <meta name="twitter:image" content="https://yemxapp.com/logo-yemx/OG-Yemx.webp" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" sizes="256x256" href="logo-yemx/yemx-logo-no-name.webp" />
+  <link rel="apple-touch-icon" href="logo-yemx/yemx-logo-no-name.webp" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "YemX",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "XAF"
+    },
+    "description": "YemX est le cahier numérique des commerçants du Cameroun. Application gratuite de gestion des ventes, stocks et crédits clients conçue pour le secteur informel. 100% hors-ligne. Disponible sur Google Play.",
+    "url": "https://yemxapp.com",
+    "installUrl": "https://play.google.com/store/apps/details?id=com.yemxapp.app",
+    "downloadUrl": "https://yemxapp.com/apk/yemx-latest.apk",
+    "softwareVersion": "1.0.0",
+    "availableOnDevice": "Android",
+    "countriesSupported": "CM",
+    "inLanguage": ["fr", "en"],
+    "author": {
+      "@type": "Organization",
+      "name": "YemX",
+      "url": "https://yemxapp.com"
+    }
+  }, {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "YemX",
+    "alternateName": "YemX App",
+    "url": "https://yemxapp.com",
+    "logo": "https://yemxapp.com/logo-yemx/OG-Yemx.webp",
+    "description": "Startup camerounaise éditrice du cahier numérique des commerçants. Application de gestion des ventes, stocks et crédits clients pour le secteur informel au Cameroun.",
+    "foundingDate": "2024",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Yaoundé, Cameroun"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Yaoundé",
+      "addressRegion": "Centre",
+      "addressCountry": "CM"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Cameroun"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+237694208641",
+      "email": "contact@yemxapp.com",
+      "contactType": "customer service",
+      "availableLanguage": ["French", "English"]
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/YemX/61572368152527/",
+      "https://play.google.com/store/apps/details?id=com.yemxapp.app"
+    ]
+  }, {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Est-ce que YemX est gratuit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, l'offre de base est 100% gratuite et le restera. Vous pouvez gérer votre boutique avec des ventes et stocks illimités sans jamais payer."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Est-ce que YemX marche sans internet ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolument. YemX est conçu pour fonctionner 100% hors-ligne. Toutes vos données sont stockées directement sur votre téléphone."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Où télécharger YemX ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YemX est disponible sur Google Play pour Android. Vous pouvez aussi télécharger l'APK directement depuis yemxapp.com si vous n'avez pas accès au Play Store. La version iOS arrive bientôt sur l'App Store."
+      }
+    }, {
+      "@type": "Question",
+      "name": "C'est quoi un fichier APK ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un APK est un fichier d'installation pour les téléphones Android. Après le téléchargement, ouvrez le fichier et suivez les instructions d'installation."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Est-ce que YemX marche sur iPhone ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pas encore. YemX est aujourd'hui disponible sur Android via Google Play ou en téléchargeant l'APK. La version iPhone arrive bientôt sur l'App Store."
+      }
+    }]
+  }]
+  </script>
+
+  <!-- Fonts (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" /></noscript>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-surface font-body text-on-surface antialiased pb-16 md:pb-0 max-w-[1440px] mx-auto">
+
+  <!-- ═══ Navigation ═══ -->
+  <header id="navbar" class="fixed top-0 w-full max-w-[1440px] left-1/2 -translate-x-1/2 z-50 flex items-center justify-between px-6 lg:px-12 h-20 bg-transparent transition-all duration-300">
+    <a href="/" aria-label="YemX - Accueil">
+      <img src="logo-yemx/yemx-logo-no-name-remove-background.com.webp" alt="YemX logo" class="h-16 w-16" width="96" height="96" />
+    </a>
+    <div class="hidden md:flex items-center gap-6">
+      <nav class="flex items-center gap-8" aria-label="Navigation principale">
+        <a class="text-on-surface-variant hover:text-primary font-medium transition-colors duration-200" href="#features" data-i18n="nav.features">Fonctionnalités</a>
+        <a class="text-on-surface-variant hover:text-primary font-medium transition-colors duration-200" href="#how-it-works" data-i18n="nav.how">Comment ça marche</a>
+        <a class="text-on-surface-variant hover:text-primary font-medium transition-colors duration-200" href="#pricing" data-i18n="nav.pricing">Tarifs</a>
+        <a class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-semibold hover:bg-emerald-700 active:scale-[0.97] transition-all duration-200 shadow-md" href="#download" data-i18n="nav.download">Télécharger</a>
+      </nav>
+      <div class="lang-toggle">
+        <button onclick="setLang('fr')" id="lang-fr" class="active">FR</button>
+        <button onclick="setLang('en')" id="lang-en">EN</button>
+      </div>
+    </div>
+    <div class="md:hidden flex items-center gap-3">
+      <div class="lang-toggle">
+        <button onclick="setLang('fr')" class="lang-fr-btn active">FR</button>
+        <button onclick="setLang('en')" class="lang-en-btn">EN</button>
+      </div>
+      <button id="menu-toggle" class="text-on-surface p-1" aria-label="Ouvrir le menu">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══ Mobile menu overlay ═══ -->
+  <div id="mobile-menu" class="mobile-overlay fixed inset-0 z-[60]">
+    <div class="absolute inset-0 bg-black/40" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu-panel absolute top-0 left-0 right-0 bg-white shadow-xl">
+      <!-- Header row — aligned with navbar -->
+      <div class="flex items-center justify-between px-6 h-20">
+        <a href="/" class="flex items-center gap-2.5" onclick="closeMobileMenu()">
+          <img src="logo-yemx/yemx-logo-no-name-remove-background.com.webp" alt="YemX" class="h-10 w-10" width="40" height="40" />
+          <span class="text-primary font-bold text-xl tracking-tight">YemX</span>
+        </a>
+        <button id="menu-close" class="p-2 -mr-2 rounded-lg hover:bg-surface-container transition-colors" aria-label="Fermer le menu">
+          <span class="material-symbols-outlined text-2xl text-on-surface">close</span>
+        </button>
+      </div>
+      <!-- Navigation links -->
+      <nav class="px-6 pb-2" aria-label="Navigation mobile">
+        <a class="flex items-center gap-3 py-4 border-b border-outline-variant/50 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#features" onclick="closeMobileMenu()" data-i18n="nav.features">
+          <span class="material-symbols-outlined text-xl text-primary">apps</span>
+          Fonctionnalités
+        </a>
+        <a class="flex items-center gap-3 py-4 border-b border-outline-variant/50 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#how-it-works" onclick="closeMobileMenu()" data-i18n="nav.how">
+          <span class="material-symbols-outlined text-xl text-primary">rocket_launch</span>
+          Comment ça marche
+        </a>
+        <a class="flex items-center gap-3 py-4 border-b border-outline-variant/50 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#pricing" onclick="closeMobileMenu()" data-i18n="nav.pricing">
+          <span class="material-symbols-outlined text-xl text-primary">payments</span>
+          Tarifs
+        </a>
+        <a class="flex items-center gap-3 py-4 text-on-surface font-medium text-base active:bg-surface-container transition-colors" href="#faq" onclick="closeMobileMenu()">
+          <span class="material-symbols-outlined text-xl text-primary">help</span>
+          FAQ
+        </a>
+      </nav>
+      <!-- CTA -->
+      <div class="px-6 pt-2 pb-6">
+        <a class="w-full h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-emerald-700 active:scale-[0.97] transition-all duration-200" href="#download" onclick="closeMobileMenu()">
+          <span class="material-symbols-outlined text-xl mr-2">download</span>
+          <span data-i18n="nav.download">Télécharger</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ═══ Hero ═══ -->
+    <section class="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-28 px-6 lg:px-24">
+      <div class="absolute top-20 right-0 w-[400px] h-[400px] bg-primary-fixed/15 rounded-full blur-[100px] -z-10"></div>
+      <div class="absolute bottom-0 left-0 w-[250px] h-[250px] bg-secondary-container/25 rounded-full blur-[80px] -z-10"></div>
+
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight leading-[1.12] mb-6" data-i18n="hero.title" data-i18n-html="true">
+            <span class="text-primary font-extrabold text-5xl md:text-6xl lg:text-7xl tracking-tight mb-6 block md:mb-8">YemX</span>
+            Le cahier numérique <span class="text-primary italic">des commerçants.</span>
+          </h1>
+          <p class="text-base sm:text-lg md:text-xl text-on-surface-variant mb-8 md:mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed" data-i18n="hero.subtitle">
+            Gérez vos ventes, stocks et crédits clients directement depuis votre téléphone. Simple, rapide et 100% hors-ligne — conçu au Cameroun pour les commerçants.
+          </p>
+          <div class="flex flex-col items-center md:items-start gap-5">
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a class="store-btn cta-pulse" href="https://play.google.com/store/apps/details?id=com.yemxapp.app" target="_blank" rel="noopener" aria-label="Télécharger YemX sur Google Play">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="#00c3ff" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.25-.84-.76-.84-1.35z" />
+                  <path fill="#ff3a44" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27z" />
+                  <path fill="#ffce00" d="M20.16 10.81c.34.27.59.68.59 1.19 0 .51-.23.9-.58 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.28 1.31z" />
+                  <path fill="#00f076" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z" />
+                </svg>
+                <span class="store-btn-label">
+                  <span class="store-btn-top" data-i18n="store.available">Disponible sur</span>
+                  <span class="store-btn-bottom">Google Play</span>
+                </span>
+              </a>
+              <span class="store-btn store-btn-soon" aria-label="YemX bientôt disponible sur l'App Store">
+                <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                </svg>
+                <span class="store-btn-label">
+                  <span class="store-btn-top" data-i18n="store.soon">Bientôt sur</span>
+                  <span class="store-btn-bottom">App Store</span>
+                </span>
+              </span>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-x-6 gap-y-2">
+              <a class="inline-flex items-center gap-1.5 text-primary font-semibold text-sm hover:underline underline-offset-4" href="#download">
+                <span class="material-symbols-outlined text-lg">download</span>
+                <span data-i18n="hero.apk">Ou télécharger l'APK</span>
+              </a>
+              <div class="flex items-center gap-2 text-on-surface-variant font-medium text-sm">
+                <span class="material-symbols-outlined text-xl text-primary">verified</span>
+                <span data-i18n="hero.badge">Conçu pour l'Afrique</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone mockup — Dashboard -->
+        <div class="flex-1 flex justify-center mt-8 md:mt-0">
+          <div class="relative w-[280px] h-[578px] md:w-[320px] md:h-[660px] bg-gray-900 rounded-[2.5rem] p-[10px] md:p-3 shadow-xl shadow-black/25 ring-1 ring-gray-700/50">
+            <div class="absolute top-[14px] md:top-4 left-1/2 -translate-x-1/2 w-2.5 h-2.5 md:w-3 md:h-3 bg-gray-800 rounded-full z-10 ring-[1.5px] ring-gray-700"></div>
+            <div class="absolute -right-[14px] md:-right-[15px] top-[120px] md:top-[140px] w-[3px] h-[46px] bg-gray-900 rounded-r-lg"></div>
+            <div class="absolute -left-[14px] md:-left-[15px] top-[100px] md:top-[110px] w-[3px] h-[32px] bg-gray-900 rounded-l-lg"></div>
+            <div class="absolute -left-[14px] md:-left-[15px] top-[140px] md:top-[155px] w-[3px] h-[32px] bg-gray-900 rounded-l-lg"></div>
+            <div class="w-full h-full rounded-[2rem] overflow-hidden bg-surface">
+              <img src="screenshot/landing-screens/dashboard-screen.webp" alt="YemX cahier numérique commerçants — Tableau de bord affichant les ventes du jour et crédits clients au Cameroun" class="w-full h-full object-cover object-top" loading="eager" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Problem section ═══ -->
+    <section class="py-16 md:py-24 bg-surface-container-low px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-headline text-center mb-12 md:mb-16 reveal" data-i18n="problem.title">Tu connais ça ?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div class="bg-white p-7 md:p-8 rounded-2xl shadow-sm card-hover reveal reveal-delay-1">
+            <div class="w-12 h-12 md:w-14 md:h-14 bg-error-container rounded-2xl flex items-center justify-center text-error mb-4">
+              <span class="material-symbols-outlined text-2xl md:text-3xl">edit_off</span>
+            </div>
+            <h3 class="font-bold text-lg md:text-xl mb-2" data-i18n="problem.notebook.title">Cahier raturé</h3>
+            <p class="text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="problem.notebook.desc">Pages arrachées, écriture illisible ou cahier mouillé ? Ne perdez plus vos données précieuses.</p>
+          </div>
+          <div class="bg-white p-7 md:p-8 rounded-2xl shadow-sm card-hover reveal reveal-delay-2">
+            <div class="w-12 h-12 md:w-14 md:h-14 bg-tertiary-fixed rounded-2xl flex items-center justify-center text-tertiary mb-4">
+              <span class="material-symbols-outlined text-2xl md:text-3xl">calculate</span>
+            </div>
+            <h3 class="font-bold text-lg md:text-xl mb-2" data-i18n="problem.calc.title">Calculatrice infinie</h3>
+            <p class="text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="problem.calc.desc">Passer des heures à recalculer la journée avec des erreurs qui vous font perdre de l'argent.</p>
+          </div>
+          <div class="bg-white p-7 md:p-8 rounded-2xl shadow-sm card-hover reveal reveal-delay-3">
+            <div class="w-12 h-12 md:w-14 md:h-14 bg-outline-variant/30 rounded-2xl flex items-center justify-center text-slate-700 mb-4">
+              <span class="material-symbols-outlined text-2xl md:text-3xl">person_off</span>
+            </div>
+            <h3 class="font-bold text-lg md:text-xl mb-2" data-i18n="problem.debt.title">Dette perdue</h3>
+            <p class="text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="problem.debt.desc">Oublier qui vous doit quoi et quand. Les petits crédits non réclamés ruinent votre commerce.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Features (Bento Grid) ═══ -->
+    <section class="py-16 md:py-24 px-6 lg:px-24" id="features">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14 md:mb-20 reveal">
+          <span class="text-primary font-bold tracking-widest text-xs uppercase" data-i18n="features.tag">Innovation</span>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-headline mt-3" data-i18n="features.title">YemX : tout ce qu'il faut pour gérer votre commerce</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-5 md:gap-6">
+          <!-- Ventes rapides -->
+          <div class="md:col-span-3 bg-secondary-container/20 p-8 md:p-10 rounded-2xl card-hover reveal">
+            <span class="material-symbols-outlined text-3xl md:text-4xl text-primary mb-3">bolt</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-3" data-i18n="features.sales.title">Ventes rapides</h3>
+            <p class="text-on-surface-variant md:text-lg leading-relaxed" data-i18n="features.sales.desc">Enregistrez une vente en moins de 3 secondes. Vos clients n'attendent plus.</p>
+            <div class="mt-6 bg-white/60 rounded-xl overflow-hidden flex items-center justify-center p-4">
+              <img alt="YemX — Écran principal avec nouvelle vente et résumé du chiffre d'affaires quotidien" class="w-48 md:w-56 rounded-xl shadow-md" src="screenshot/landing-screens/dashboard-screen.webp" loading="lazy" />
+            </div>
+          </div>
+          <!-- Stock temps réel -->
+          <div class="md:col-span-3 bg-surface-container-high p-8 md:p-10 rounded-2xl card-hover reveal flex flex-col">
+            <span class="material-symbols-outlined text-3xl md:text-4xl text-primary mb-3">inventory_2</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-3" data-i18n="features.stock.title">Stock temps réel</h3>
+            <p class="text-on-surface-variant md:text-lg leading-relaxed" data-i18n="features.stock.desc">Soyez alerté quand un produit finit. Ne soyez plus jamais en rupture de stock par surprise.</p>
+            <div class="mt-6 bg-white/60 rounded-xl overflow-hidden flex items-center justify-center p-4">
+              <img alt="YemX — Gestion des stocks commerçants avec alertes de rupture" class="w-48 md:w-56 rounded-xl shadow-md" src="screenshot/landing-screens/stock-screen.webp" loading="lazy" />
+            </div>
+          </div>
+          <!-- Gestion crédits -->
+          <div class="md:col-span-2 bg-surface-container p-7 md:p-8 rounded-2xl card-hover reveal reveal-delay-1">
+            <span class="material-symbols-outlined text-3xl text-primary mb-3">account_balance_wallet</span>
+            <h4 class="text-lg md:text-xl font-bold mb-2" data-i18n="features.credits.title">Gestion crédits</h4>
+            <p class="text-on-surface-variant text-sm md:text-base" data-i18n="features.credits.desc">Suivez les ardoises de vos clients et envoyez des rappels de paiement en un clic.</p>
+          </div>
+          <!-- Offline-first -->
+          <div class="md:col-span-2 bg-surface-container p-7 md:p-8 rounded-2xl card-hover reveal reveal-delay-2">
+            <span class="material-symbols-outlined text-3xl text-primary mb-3">cloud_off</span>
+            <h4 class="text-lg md:text-xl font-bold mb-2" data-i18n="features.offline.title">Offline-first</h4>
+            <p class="text-on-surface-variant text-sm md:text-base" data-i18n="features.offline.desc">Pas d'internet ? Pas de problème. L'application fonctionne 100% sans connexion.</p>
+          </div>
+          <!-- Multi-boutiques -->
+          <div class="md:col-span-2 bg-surface-container p-7 md:p-8 rounded-2xl card-hover reveal reveal-delay-3">
+            <span class="material-symbols-outlined text-3xl text-primary mb-3">store</span>
+            <h4 class="text-lg md:text-xl font-bold mb-2" data-i18n="features.multi.title">Multi-boutiques</h4>
+            <p class="text-on-surface-variant text-sm md:text-base" data-i18n="features.multi.desc">Gérez plusieurs points de vente depuis un seul compte. Idéal pour les entrepreneurs.</p>
+          </div>
+          <!-- Rapports PDF -->
+          <div class="md:col-span-6 bg-slate-900 text-white p-8 md:p-10 rounded-2xl flex flex-col sm:flex-row items-center gap-6 md:gap-8 reveal">
+            <div class="flex-1">
+              <h3 class="text-xl md:text-2xl font-bold mb-3" data-i18n="features.pdf.title">Rapports PDF Professionnels</h3>
+              <p class="text-slate-400 leading-relaxed text-sm md:text-base" data-i18n="features.pdf.desc">Générez vos bilans hebdomadaires ou mensuels en PDF pour une analyse précise de votre croissance.</p>
+            </div>
+            <div class="flex items-center gap-4 shrink-0">
+              <img alt="YemX — Rapport PDF de gestion commerciale : grand livre des ventes et crédits clients" class="w-28 md:w-36 rounded-lg shadow-lg border border-white/10" src="screenshot/landing-screens/generated-report-screen.webp" loading="lazy" />
+              <a class="bg-white text-slate-900 px-6 md:px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-slate-100 active:scale-[0.97] transition-all duration-200 text-sm md:text-base shrink-0" href="docs/exemple-rapport.pdf" download="YemX - Exemple Rapport.pdf" target="_blank" rel="noopener">
+                <span class="material-symbols-outlined">picture_as_pdf</span> <span data-i18n="features.pdf.cta">Voir un exemple</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ App Preview — Showcase ═══ -->
+    <section class="py-16 md:py-24 px-6 bg-white" id="app-preview">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 md:mb-16 reveal">
+          <span class="text-primary font-bold tracking-widest text-xs uppercase" data-i18n="preview.tag">Aperçu</span>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-headline mt-3" data-i18n="preview.title">Découvrez YemX en action</h2>
+        </div>
+        <div class="flex gap-8 md:gap-10 md:justify-center overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide">
+          <div class="text-center reveal reveal-delay-1 shrink-0 md:shrink snap-center cursor-pointer preview-phone" data-preview-index="0" role="button" tabindex="0" aria-label="Agrandir — Tableau de bord">
+            <div class="relative w-[220px] h-[454px] bg-gray-900 rounded-[2rem] p-2 shadow-lg shadow-black/20 ring-1 ring-gray-700/50 mb-4 transition-transform duration-200 hover:scale-[1.03]">
+              <div class="absolute top-[10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full z-10 ring-1 ring-gray-700"></div>
+              <div class="w-full h-full rounded-[1.5rem] overflow-hidden bg-surface">
+                <img src="screenshot/landing-screens/dashboard-screen.webp" alt="YemX — Tableau de bord du cahier numérique pour commerçants camerounais" class="w-full h-full object-cover object-top" loading="lazy" />
+              </div>
+            </div>
+            <p class="text-sm font-semibold text-on-surface" data-i18n="preview.dashboard">Tableau de bord</p>
+          </div>
+          <div class="text-center reveal reveal-delay-2 shrink-0 md:shrink snap-center cursor-pointer preview-phone" data-preview-index="1" role="button" tabindex="0" aria-label="Agrandir — Gestion du stock">
+            <div class="relative w-[220px] h-[454px] bg-gray-900 rounded-[2rem] p-2 shadow-lg shadow-black/20 ring-1 ring-gray-700/50 mb-4 transition-transform duration-200 hover:scale-[1.03]">
+              <div class="absolute top-[10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full z-10 ring-1 ring-gray-700"></div>
+              <div class="w-full h-full rounded-[1.5rem] overflow-hidden bg-surface">
+                <img src="screenshot/landing-screens/stock-screen.webp" alt="YemX — Suivi des stocks et inventaire en temps réel hors-ligne" class="w-full h-full object-cover object-top" loading="lazy" />
+              </div>
+            </div>
+            <p class="text-sm font-semibold text-on-surface" data-i18n="preview.stock">Gestion du stock</p>
+          </div>
+          <div class="text-center reveal reveal-delay-3 shrink-0 md:shrink snap-center cursor-pointer preview-phone" data-preview-index="2" role="button" tabindex="0" aria-label="Agrandir — Rapport PDF">
+            <div class="relative w-[220px] h-[454px] bg-gray-900 rounded-[2rem] p-2 shadow-lg shadow-black/20 ring-1 ring-gray-700/50 mb-4 transition-transform duration-200 hover:scale-[1.03]">
+              <div class="absolute top-[10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full z-10 ring-1 ring-gray-700"></div>
+              <div class="w-full h-full rounded-[1.5rem] overflow-hidden bg-surface">
+                <img src="screenshot/landing-screens/generated-report-screen.webp" alt="YemX — Génération de rapports PDF de gestion pour commerçants" class="w-full h-full object-cover object-top" loading="lazy" />
+              </div>
+            </div>
+            <p class="text-sm font-semibold text-on-surface" data-i18n="preview.report">Rapport PDF</p>
+          </div>
+          <div class="text-center reveal reveal-delay-4 shrink-0 md:shrink snap-center cursor-pointer preview-phone" data-preview-index="3" role="button" tabindex="0" aria-label="Agrandir — Journal d'activité">
+            <div class="relative w-[220px] h-[454px] bg-gray-900 rounded-[2rem] p-2 shadow-lg shadow-black/20 ring-1 ring-gray-700/50 mb-4 transition-transform duration-200 hover:scale-[1.03]">
+              <div class="absolute top-[10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full z-10 ring-1 ring-gray-700"></div>
+              <div class="w-full h-full rounded-[1.5rem] overflow-hidden bg-surface">
+                <img src="screenshot/landing-screens/actuvity-log-screen.webp" alt="YemX — Journal d'activité et historique des transactions de la boutique" class="w-full h-full object-cover object-top" loading="lazy" />
+              </div>
+            </div>
+            <p class="text-sm font-semibold text-on-surface" data-i18n="preview.journal">Journal d'activité</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ How it works ═══ -->
+    <section class="py-16 md:py-24 bg-surface-container-low px-6" id="how-it-works">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-14 md:mb-16 reveal" data-i18n="steps.title">Démarrer avec YemX en 3 étapes</h2>
+        <div class="relative">
+          <div class="hidden md:block absolute top-8 left-[16.66%] right-[16.66%] h-0.5 bg-secondary-container z-0"></div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 relative z-10">
+            <div class="text-center space-y-4 md:space-y-6 step-connector reveal reveal-delay-1">
+              <div class="w-14 h-14 md:w-16 md:h-16 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl md:text-2xl mx-auto shadow-lg">1</div>
+              <h3 class="font-bold text-lg md:text-xl" data-i18n="steps.s1.title">Installer YemX</h3>
+              <p class="text-on-surface-variant text-sm md:text-base" data-i18n="steps.s1.desc">Installez l'application depuis Google Play, ou téléchargez l'APK directement depuis ce site.</p>
+            </div>
+            <div class="text-center space-y-4 md:space-y-6 step-connector reveal reveal-delay-2">
+              <div class="w-14 h-14 md:w-16 md:h-16 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl md:text-2xl mx-auto shadow-lg">2</div>
+              <h3 class="font-bold text-lg md:text-xl" data-i18n="steps.s2.title">Créer votre boutique</h3>
+              <p class="text-on-surface-variant text-sm md:text-base" data-i18n="steps.s2.desc">Entrez le nom de votre commerce et ajoutez vos premiers articles en rayon.</p>
+            </div>
+            <div class="text-center space-y-4 md:space-y-6 step-connector reveal reveal-delay-3">
+              <div class="w-14 h-14 md:w-16 md:h-16 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl md:text-2xl mx-auto shadow-lg">3</div>
+              <h3 class="font-bold text-lg md:text-xl" data-i18n="steps.s3.title">Vendre !</h3>
+              <p class="text-on-surface-variant text-sm md:text-base" data-i18n="steps.s3.desc">C'est fini ! Vous pouvez commencer à enregistrer vos ventes et suivre vos stocks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Pricing ═══ -->
+    <section class="py-16 md:py-24 px-6 lg:px-24 bg-white" id="pricing">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12 md:mb-16 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold font-headline mb-4" data-i18n="pricing.title">Une offre simple, sans surprise</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <!-- Gratuit -->
+          <div class="bg-white p-8 md:p-10 rounded-3xl border-4 border-primary shadow-xl relative overflow-hidden card-hover reveal">
+            <div class="absolute top-0 right-0 bg-primary text-on-primary py-1.5 px-4 rounded-bl-xl font-bold text-xs" data-i18n="pricing.popular">POPULAIRE</div>
+            <h3 class="text-2xl font-bold mb-2" data-i18n="pricing.free.name">Gratuit</h3>
+            <div class="flex items-baseline gap-1 mb-6 md:mb-8">
+              <span class="text-3xl md:text-4xl font-extrabold tracking-tight">0 FCFA</span>
+              <span class="text-on-surface-variant text-sm" data-i18n="pricing.free.period">/à vie</span>
+            </div>
+            <ul class="space-y-3 md:space-y-4 mb-8 md:mb-10">
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.free.f1">Jusqu'à 2 boutiques</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.free.f2">25 produits · 15 clients · 50 crédits</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.free.f3">10 rapports PDF</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.free.f4">2 membres d'équipe</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.free.f5">Synchronisation Cloud</span>
+              </li>
+            </ul>
+            <a class="w-full h-12 md:h-14 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-emerald-700 active:scale-[0.97] transition-all duration-200 text-sm md:text-base" href="#download" data-i18n="pricing.free.cta">Commencer gratuitement</a>
+          </div>
+          <!-- Pro -->
+          <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-outline-variant card-hover reveal">
+            <h3 class="text-2xl font-bold mb-2">Pro</h3>
+            <div class="flex items-baseline gap-1 mb-6 md:mb-8">
+              <span class="text-3xl md:text-4xl font-extrabold tracking-tight">2 500 FCFA</span>
+              <span class="text-on-surface-variant text-sm" data-i18n="pricing.pro.period">/mois</span>
+            </div>
+            <ul class="space-y-3 md:space-y-4 mb-8 md:mb-10">
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.pro.f1">Jusqu'à 3 boutiques</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.pro.f2">Produits, clients et crédits illimités</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.pro.f3">Rapports PDF illimités</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.pro.f4">Jusqu'à 5 membres d'équipe</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm md:text-base">
+                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                <span data-i18n="pricing.pro.f5">Synchronisation Cloud</span>
+              </li>
+            </ul>
+            <a class="w-full h-12 md:h-14 bg-surface-container-highest text-on-surface rounded-full flex items-center justify-center font-bold border border-primary/20 hover:bg-primary hover:text-on-primary active:scale-[0.97] transition-all duration-200 text-sm md:text-base" href="https://wa.me/237694208641?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20l'offre%20Pro%20de%20YemX." target="_blank" rel="noopener" data-i18n="pricing.pro.cta">Solliciter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Key stats ═══ -->
+    <section class="bg-primary text-on-primary py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
+        <div class="reveal reveal-delay-1">
+          <div class="text-3xl md:text-5xl font-bold mb-1 counter">100%</div>
+          <div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium">Offline</div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="text-3xl md:text-5xl font-bold mb-1 counter">2 min</div>
+          <div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium" data-i18n="stats.shop">Boutique créée</div>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="text-3xl md:text-5xl font-bold mb-1 counter">3 sec</div>
+          <div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium" data-i18n="stats.sale">Par vente</div>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="text-3xl md:text-5xl font-bold mb-1 counter">0 FCFA</div>
+          <div class="text-xs md:text-sm opacity-80 uppercase tracking-widest font-medium" data-i18n="stats.start">Pour démarrer</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="py-16 md:py-24 px-6 bg-surface-container-low" id="faq">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 reveal" data-i18n="faq.title">Questions fréquentes</h2>
+        <div class="space-y-3 md:space-y-4">
+
+          <div class="faq-item bg-white rounded-xl overflow-hidden shadow-sm reveal reveal-delay-1">
+            <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg" aria-expanded="false">
+              <span data-i18n="faq.q1">C'est vraiment gratuit ?</span>
+              <span class="material-symbols-outlined faq-icon transition-transform duration-300 text-primary shrink-0 ml-4">expand_more</span>
+            </button>
+            <div class="faq-answer px-6 text-on-surface-variant text-sm md:text-base leading-relaxed">
+              <p data-i18n="faq.a1">Oui ! L'offre de base est 100% gratuite et le restera. Vous pouvez gérer jusqu'à 2 boutiques, 25 produits, 15 clients et 50 crédits sans jamais payer un franc.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-xl overflow-hidden shadow-sm reveal reveal-delay-1">
+            <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg" aria-expanded="false">
+              <span data-i18n="faq.q2">Est-ce que ça marche sans internet ?</span>
+              <span class="material-symbols-outlined faq-icon transition-transform duration-300 text-primary shrink-0 ml-4">expand_more</span>
+            </button>
+            <div class="faq-answer px-6 text-on-surface-variant text-sm md:text-base leading-relaxed">
+              <p data-i18n="faq.a2">Absolument. YemX est conçu pour fonctionner 100% hors-ligne. Toutes vos données sont stockées directement sur votre téléphone. La connexion internet n'est nécessaire que pour la synchronisation cloud.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-xl overflow-hidden shadow-sm reveal reveal-delay-2">
+            <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg" aria-expanded="false">
+              <span data-i18n="faq.q7">Google Play ou APK : que choisir ?</span>
+              <span class="material-symbols-outlined faq-icon transition-transform duration-300 text-primary shrink-0 ml-4">expand_more</span>
+            </button>
+            <div class="faq-answer px-6 text-on-surface-variant text-sm md:text-base leading-relaxed">
+              <p data-i18n="faq.a7">Nous recommandons Google Play : l'installation est plus simple et les mises à jour sont automatiques. L'APK reste disponible sur ce site si vous n'avez pas le Play Store sur votre téléphone ou si vous préférez installer sans passer par un compte Google.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-xl overflow-hidden shadow-sm reveal reveal-delay-2">
+            <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg" aria-expanded="false">
+              <span data-i18n="faq.q3">C'est quoi un fichier APK ?</span>
+              <span class="material-symbols-outlined faq-icon transition-transform duration-300 text-primary shrink-0 ml-4">expand_more</span>
+            </button>
+            <div class="faq-answer px-6 text-on-surface-variant text-sm md:text-base leading-relaxed">
+              <p data-i18n="faq.a3">Un APK est un fichier d'installation pour les téléphones Android. C'est comme un .exe sur un ordinateur. Après le téléchargement, ouvrez le fichier et suivez les instructions d'installation. Vous devrez peut-être autoriser les « sources inconnues » dans vos paramètres.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-xl overflow-hidden shadow-sm reveal reveal-delay-3">
+            <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg" aria-expanded="false">
+              <span data-i18n="faq.q5">Est-ce que ça marche sur iPhone ?</span>
+              <span class="material-symbols-outlined faq-icon transition-transform duration-300 text-primary shrink-0 ml-4">expand_more</span>
+            </button>
+            <div class="faq-answer px-6 text-on-surface-variant text-sm md:text-base leading-relaxed">
+              <p data-i18n="faq.a5">Pas encore. YemX est aujourd'hui disponible sur Android, via Google Play ou en téléchargeant l'APK. La version iPhone arrive bientôt sur l'App Store.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-xl overflow-hidden shadow-sm reveal reveal-delay-3">
+            <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-base md:text-lg" aria-expanded="false">
+              <span data-i18n="faq.q6">Comment mettre à jour l'application ?</span>
+              <span class="material-symbols-outlined faq-icon transition-transform duration-300 text-primary shrink-0 ml-4">expand_more</span>
+            </button>
+            <div class="faq-answer px-6 text-on-surface-variant text-sm md:text-base leading-relaxed">
+              <p data-i18n="faq.a6">Si vous avez installé YemX depuis Google Play, les mises à jour se font automatiquement. Si vous utilisez l'APK, téléchargez la dernière version depuis ce site et installez-la par-dessus. Dans les deux cas, vos données sont conservées.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Download CTA ═══ -->
+    <section class="py-16 md:py-24 px-6 lg:px-24" id="download">
+      <div class="max-w-5xl mx-auto bg-slate-900 text-white rounded-3xl overflow-hidden shadow-2xl reveal">
+        <div class="flex flex-col md:flex-row">
+          <div class="flex-1 p-8 md:p-14 lg:p-16">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 leading-tight" data-i18n="cta.title">Prêt à moderniser votre commerce avec YemX ?</h2>
+            <p class="text-slate-400 mb-8 md:text-lg leading-relaxed" data-i18n="cta.subtitle">
+              Rejoignez les commerçants qui ont dit adieu au cahier papier. Téléchargez YemX maintenant — c'est gratuit.
+            </p>
+            <!-- Stores officiels -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a class="store-btn store-btn-light" href="https://play.google.com/store/apps/details?id=com.yemxapp.app" target="_blank" rel="noopener" aria-label="Télécharger YemX sur Google Play">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="#00c3ff" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.25-.84-.76-.84-1.35z" />
+                  <path fill="#ff3a44" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27z" />
+                  <path fill="#ffce00" d="M20.16 10.81c.34.27.59.68.59 1.19 0 .51-.23.9-.58 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.28 1.31z" />
+                  <path fill="#00f076" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z" />
+                </svg>
+                <span class="store-btn-label">
+                  <span class="store-btn-top" data-i18n="store.available">Disponible sur</span>
+                  <span class="store-btn-bottom">Google Play</span>
+                </span>
+              </a>
+              <span class="store-btn store-btn-soon store-btn-soon-dark" aria-label="YemX bientôt disponible sur l'App Store">
+                <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                </svg>
+                <span class="store-btn-label">
+                  <span class="store-btn-top" data-i18n="store.soon">Bientôt sur</span>
+                  <span class="store-btn-bottom">App Store</span>
+                </span>
+              </span>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="or-divider text-slate-500 my-7 max-w-sm" data-i18n="cta.or">ou installation directe</div>
+
+            <!-- APK direct -->
+            <a class="inline-flex items-center gap-3 bg-primary text-on-primary px-8 md:px-10 py-3.5 md:py-4 rounded-full font-bold text-lg hover:bg-emerald-600 transition-all duration-200 shadow-lg active:scale-[0.97]" href="apk/yemx-latest.apk" download="YemX.apk" data-apk-modern>
+              <span class="material-symbols-outlined text-2xl">download</span>
+              <span data-i18n="cta.button">Télécharger l'APK</span>
+            </a>
+            <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs md:text-sm">
+              <span class="text-slate-500"><span data-i18n="cta.version">Version</span> <span data-version-number>—</span></span>
+              <a class="text-slate-400 hover:text-primary underline underline-offset-2 transition-colors" href="apk/yemx-latest.apk" download data-apk-old data-i18n="cta.older">Téléphone Android plus ancien (32 bits)</a>
+            </div>
+            <div class="mt-6 flex items-start gap-3">
+              <span class="material-symbols-outlined text-emerald-500 mt-0.5 text-lg">info</span>
+              <p class="text-xs md:text-sm text-slate-400" data-i18n="cta.note">L'APK est un fichier d'installation direct pour Android, utile si vous n'avez pas accès au Play Store. Vous devrez peut-être autoriser les "sources inconnues" dans vos paramètres.</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex w-full md:w-1/3 bg-primary/10 items-center justify-center p-6 md:p-8">
+            <div class="relative w-[200px] h-[412px] bg-gray-900 rounded-[1.8rem] p-2 shadow-lg shadow-black/20 ring-1 ring-gray-700/50">
+              <div class="absolute top-[10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full z-10 ring-1 ring-gray-700"></div>
+              <div class="w-full h-full rounded-[1.4rem] overflow-hidden bg-surface">
+                <img src="screenshot/landing-screens/stock-screen.webp" alt="YemX — Application de gestion du stock pour commerçants au Cameroun" class="w-full h-full object-cover object-top" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ About ═══ -->
+    <section id="about" class="py-16 md:py-24 px-6 text-center border-t border-surface-container-high">
+      <div class="max-w-3xl mx-auto reveal">
+        <img src="logo-yemx/yemx-logo-no-name-remove-background.com.webp" alt="Logo YemX — startup camerounaise du cahier numérique des commerçants" class="h-14 w-14 mx-auto mb-5" width="56" height="56" />
+        <h2 class="text-2xl md:text-3xl font-bold mb-4" data-i18n="about.title">YemX — La startup camerounaise du cahier numérique des commerçants</h2>
+        <p class="text-base md:text-lg text-on-surface-variant leading-relaxed mb-4" data-i18n="about.desc">
+          YemX est une startup née à Yaoundé avec une mission simple : remplacer le cahier papier des commerçants camerounais par un outil numérique fiable, gratuit et qui fonctionne sans internet.
+        </p>
+        <p class="text-base md:text-lg text-on-surface-variant leading-relaxed">
+          Conçue pour le secteur informel au Cameroun, l'application accompagne les commerçants, boutiquiers et détaillants dans la gestion quotidienne de leurs ventes, stocks et crédits clients — directement depuis leur téléphone.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ Preview Modal ═══ -->
+  <div id="preview-modal" class="fixed inset-0 z-[100] flex items-center justify-center preview-modal-overlay" aria-hidden="true" role="dialog" aria-label="Aperçu de l'application">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="preview-modal-backdrop"></div>
+    <button id="preview-modal-close" class="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" aria-label="Fermer">
+      <span class="material-symbols-outlined text-white text-2xl">close</span>
+    </button>
+    <button id="preview-modal-prev" class="absolute left-2 md:left-6 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" aria-label="Précédent">
+      <span class="material-symbols-outlined text-white text-2xl">chevron_left</span>
+    </button>
+    <button id="preview-modal-next" class="absolute right-2 md:right-6 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" aria-label="Suivant">
+      <span class="material-symbols-outlined text-white text-2xl">chevron_right</span>
+    </button>
+    <div class="relative z-10 flex flex-col items-center" id="preview-modal-content">
+      <div class="relative w-[280px] h-[578px] md:w-[340px] md:h-[700px] bg-gray-900 rounded-[2.5rem] p-[10px] md:p-3 shadow-2xl shadow-black/50 ring-1 ring-gray-700/50">
+        <div class="absolute top-[14px] md:top-4 left-1/2 -translate-x-1/2 w-2.5 h-2.5 md:w-3 md:h-3 bg-gray-800 rounded-full z-10 ring-[1.5px] ring-gray-700"></div>
+        <div class="w-full h-full rounded-[2rem] overflow-hidden bg-surface">
+          <img id="preview-modal-img" src="" alt="" class="w-full h-full object-cover object-top" />
+        </div>
+      </div>
+      <p id="preview-modal-label" class="text-white font-semibold text-base md:text-lg mt-5"></p>
+      <div class="flex gap-2 mt-4" id="preview-modal-dots"></div>
+    </div>
+  </div>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="bg-surface-container-highest pt-14 md:pt-16 pb-8 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4 md:mb-6">
+          <img src="logo-yemx/yemx-logo-no-name-remove-background.com.webp" alt="YemX" class="h-7 w-7" width="28" height="28" />
+          <span class="text-primary font-bold text-xl tracking-tight">YemX</span>
+        </div>
+        <p class="text-on-surface-variant text-sm" data-i18n="footer.tagline">L'allié digital de tous les commerçants d'Afrique.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 md:mb-6 text-sm" data-i18n="footer.links">Liens rapides</h4>
+        <nav aria-label="Liens du pied de page">
+          <ul class="space-y-3 text-on-surface-variant text-sm">
+            <li><a class="hover:text-primary transition-colors duration-200" href="#features" data-i18n="nav.features">Fonctionnalités</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200" href="#how-it-works" data-i18n="footer.install">Installation</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200" href="#pricing" data-i18n="nav.pricing">Tarifs</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200" href="#faq">FAQ</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200" href="https://play.google.com/store/apps/details?id=com.yemxapp.app" target="_blank" rel="noopener">Google Play</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 md:mb-6 text-sm">Support</h4>
+        <ul class="space-y-3 text-on-surface-variant text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-base">mail</span>
+            contact@yemxapp.com
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-base">call</span>
+            +237 694 208 641
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 md:mb-6 text-sm" data-i18n="footer.follow">Suivez-nous</h4>
+        <div class="flex gap-3">
+          <a class="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:text-primary shadow-sm transition-colors duration-200" href="https://www.facebook.com/people/YemX/61572368152527/" target="_blank" rel="noopener" aria-label="Facebook">
+            <span class="material-symbols-outlined text-lg">group</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto border-t border-outline-variant pt-6">
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4 text-xs text-on-surface-variant" aria-label="Liens légaux">
+        <a href="/mentions-legales.html" class="hover:text-primary transition-colors duration-200">Mentions légales</a>
+        <a href="/politique-confidentialite.html" class="hover:text-primary transition-colors duration-200">Confidentialité</a>
+        <a href="/cgu.html" class="hover:text-primary transition-colors duration-200">Termes et Conditions</a>
+        <a href="/cgv.html" class="hover:text-primary transition-colors duration-200">CGV</a>
+      </nav>
+      <p class="text-center text-xs text-on-surface-variant">
+        &copy; <span id="year"></span> YemX. <span data-i18n="footer.rights">Tous droits réservés.</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ═══ Mobile bottom nav ═══ -->
+  <div class="md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] z-50 flex justify-around items-center px-4 h-14 bg-white/95 backdrop-blur-sm border-t border-slate-100 shadow-lg">
+    <a class="flex flex-col items-center justify-center text-slate-400 px-4 py-1 hover:text-primary active:scale-[0.95] transition-all" href="#features">
+      <span class="material-symbols-outlined text-xl">bolt</span>
+      <span class="text-[10px] font-medium" data-i18n="bottomnav.features">Fonctions</span>
+    </a>
+    <a class="flex flex-col items-center justify-center bg-primary/10 text-primary rounded-2xl px-5 py-1 active:scale-[0.95] transition-all" href="#download">
+      <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">download</span>
+      <span class="text-[10px] font-medium" data-i18n="bottomnav.install">Installer</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-slate-400 px-4 py-1 hover:text-primary active:scale-[0.95] transition-all" href="#pricing">
+      <span class="material-symbols-outlined text-xl">payments</span>
+      <span class="text-[10px] font-medium" data-i18n="nav.pricing">Tarifs</span>
+    </a>
+  </div>
+
+  <!-- Year in footer -->
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <!-- Version dynamique : pointe les boutons vers l'APK versionne et affiche la version. -->
+  <script>
+    (function () {
+      fetch('apk/version.json?t=' + Date.now(), { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (v) {
+          if (!v || !v.version) return;
+          var modernHref = 'apk/' + v.modern;
+          var oldHref = 'apk/' + v.old;
+          document.querySelectorAll('[data-apk-modern]').forEach(function (a) {
+            a.setAttribute('href', modernHref);
+            a.setAttribute('download', v.modern);
+          });
+          document.querySelectorAll('[data-apk-old]').forEach(function (a) {
+            a.setAttribute('href', oldHref);
+            a.setAttribute('download', v.old);
+          });
+          document.querySelectorAll('[data-version-number]').forEach(function (el) {
+            el.textContent = v.version;
+          });
+        })
+        .catch(function () { /* fallback silencieux : les liens yemx-latest.apk restent valides */ });
+    })();
+  </script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

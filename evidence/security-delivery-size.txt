@@ -1,0 +1,1 @@
+6851506 bytes; limit: 500000000 bytes; excluded: ['.git', '.mypy_cache', '.pytest_cache', '.ruff_cache', '.venv', '__pycache__', 'venv']

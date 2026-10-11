@@ -1,0 +1,8 @@
+/ 200 8761 fr
+/?lang=en 200 7828 en
+/ 200 7828 en
+/admin/login/ 200 12171 fr
+/static/showcase/assets/dashboard.webp 200 14140 -
+/static/showcase/fonts/lexend.css 200 936 -
+Administrative accounts: 0
+Assets/previews/FAQ/offers: 5 4 6 2

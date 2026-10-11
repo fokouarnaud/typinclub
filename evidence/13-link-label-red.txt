@@ -1,0 +1,22 @@
+.....................F........................                           [100%]
+================================== FAILURES ===================================
+_______ test_us09_each_content_family_can_be_edited_and_rendered[link] ________
+tests\test_admin.py:83: in test_us09_each_content_family_can_be_edited_and_rendered
+    assert expected in client.get('/').content.decode()
+E   assert '�dition visible' in '\n<!doctype html>\n<html lang="fr">\n<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, i...mxapp.com/cgu.html">Termes et Conditions</a></nav><p>� 2026 YemX. Tous droits r�serv�s.</p></footer>\n</body></html>\n'
+E    +  where '\n<!doctype html>\n<html lang="fr">\n<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, i...mxapp.com/cgu.html">Termes et Conditions</a></nav><p>� 2026 YemX. Tous droits r�serv�s.</p></footer>\n</body></html>\n' = <built-in method decode of bytes object at 0x0000026EDC809B60>()
+E    +    where <built-in method decode of bytes object at 0x0000026EDC809B60> = b'\n<!doctype html>\n<html lang="fr">\n<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, ...ermes et Conditions</a></nav><p>\xc2\xa9 2026 YemX. Tous droits r\xc3\xa9serv\xc3\xa9s.</p></footer>\n</body></html>\n'.decode
+E    +      where b'\n<!doctype html>\n<html lang="fr">\n<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, ...ermes et Conditions</a></nav><p>\xc2\xa9 2026 YemX. Tous droits r\xc3\xa9serv\xc3\xa9s.</p></footer>\n</body></html>\n' = <HttpResponse status_code=200, "text/html; charset=utf-8">.content
+E    +        where <HttpResponse status_code=200, "text/html; charset=utf-8"> = get('/')
+E    +          where get = <django.test.client.Client object at 0x0000026EE0C4B4D0>.get
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+============================== warnings summary ===============================
+.venv\Lib\site-packages\django\conf\__init__.py:190
+  C:\Users\cedric\Desktop\sop_ai_coding\03_REPLICATION\typinclub\.venv\Lib\site-packages\django\conf\__init__.py:190: RemovedInDjango60Warning: The FORMS_URLFIELD_ASSUME_HTTPS transitional setting is deprecated.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_admin.py::test_us09_each_content_family_can_be_edited_and_rendered[link]
+1 failed, 45 passed, 1 warning in 35.22s

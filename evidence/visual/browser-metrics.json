@@ -1,0 +1,25 @@
+[
+  {
+    "broken": 0,
+    "client": 375,
+    "faq": 6,
+    "height": 844,
+    "previews": 4,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "broken": 0,
+    "client": 753,
+    "height": 844,
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "broken": 0,
+    "client": 1425,
+    "height": 844,
+    "scroll": 1425,
+    "width": 1440
+  }
+]

@@ -1,0 +1,203 @@
+FFFFFFFF........F.......F.                                               [100%]
+================================== FAILURES ===================================
+________ test_unsafe_production_configuration_refuses_start[changes0] _________
+
+changes = {'DJANGO_SECRET_KEY': ''}
+
+    @pytest.mark.parametrize('changes', [
+        {'DJANGO_SECRET_KEY': ''}, {'DJANGO_SECRET_KEY': 'weak'},
+        {'DJANGO_ALLOWED_HOSTS': ''}, {'DJANGO_ALLOWED_HOSTS': '*'},
+        {'DJANGO_ALLOWED_HOSTS': 'testserver,*'}, {'DJANGO_DEBUG': 'typo'},
+    ])
+    def test_unsafe_production_configuration_refuses_start(changes):
+        result = production_config(**changes)
+>       assert result.returncode != 0, 'Unsafe configuration must fail closed'
+E       AssertionError: Unsafe configuration must fail closed
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['C:\\Users\\cedric\\Desktop\\sop_ai_coding\\03_REPLICATION\\typinclub\\.venv\\Scripts\\python.e... "SECURE_HSTS_INCLUDE_SUBDOMAINS": false, "SECURE_HSTS_PRELOAD": false, "SECURE_PROXY_SSL_HEADER": null}\n', stderr='').returncode
+
+tests\test_security.py:53: AssertionError
+________ test_unsafe_production_configuration_refuses_start[changes1] _________
+
+changes = {'DJANGO_SECRET_KEY': 'weak'}
+
+    @pytest.mark.parametrize('changes', [
+        {'DJANGO_SECRET_KEY': ''}, {'DJANGO_SECRET_KEY': 'weak'},
+        {'DJANGO_ALLOWED_HOSTS': ''}, {'DJANGO_ALLOWED_HOSTS': '*'},
+        {'DJANGO_ALLOWED_HOSTS': 'testserver,*'}, {'DJANGO_DEBUG': 'typo'},
+    ])
+    def test_unsafe_production_configuration_refuses_start(changes):
+        result = production_config(**changes)
+>       assert result.returncode != 0, 'Unsafe configuration must fail closed'
+E       AssertionError: Unsafe configuration must fail closed
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['C:\\Users\\cedric\\Desktop\\sop_ai_coding\\03_REPLICATION\\typinclub\\.venv\\Scripts\\python.e... "SECURE_HSTS_INCLUDE_SUBDOMAINS": false, "SECURE_HSTS_PRELOAD": false, "SECURE_PROXY_SSL_HEADER": null}\n', stderr='').returncode
+
+tests\test_security.py:53: AssertionError
+________ test_unsafe_production_configuration_refuses_start[changes2] _________
+
+changes = {'DJANGO_ALLOWED_HOSTS': ''}
+
+    @pytest.mark.parametrize('changes', [
+        {'DJANGO_SECRET_KEY': ''}, {'DJANGO_SECRET_KEY': 'weak'},
+        {'DJANGO_ALLOWED_HOSTS': ''}, {'DJANGO_ALLOWED_HOSTS': '*'},
+        {'DJANGO_ALLOWED_HOSTS': 'testserver,*'}, {'DJANGO_DEBUG': 'typo'},
+    ])
+    def test_unsafe_production_configuration_refuses_start(changes):
+        result = production_config(**changes)
+>       assert result.returncode != 0, 'Unsafe configuration must fail closed'
+E       AssertionError: Unsafe configuration must fail closed
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['C:\\Users\\cedric\\Desktop\\sop_ai_coding\\03_REPLICATION\\typinclub\\.venv\\Scripts\\python.e... "SECURE_HSTS_INCLUDE_SUBDOMAINS": false, "SECURE_HSTS_PRELOAD": false, "SECURE_PROXY_SSL_HEADER": null}\n', stderr='').returncode
+
+tests\test_security.py:53: AssertionError
+________ test_unsafe_production_configuration_refuses_start[changes3] _________
+
+changes = {'DJANGO_ALLOWED_HOSTS': '*'}
+
+    @pytest.mark.parametrize('changes', [
+        {'DJANGO_SECRET_KEY': ''}, {'DJANGO_SECRET_KEY': 'weak'},
+        {'DJANGO_ALLOWED_HOSTS': ''}, {'DJANGO_ALLOWED_HOSTS': '*'},
+        {'DJANGO_ALLOWED_HOSTS': 'testserver,*'}, {'DJANGO_DEBUG': 'typo'},
+    ])
+    def test_unsafe_production_configuration_refuses_start(changes):
+        result = production_config(**changes)
+>       assert result.returncode != 0, 'Unsafe configuration must fail closed'
+E       AssertionError: Unsafe configuration must fail closed
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['C:\\Users\\cedric\\Desktop\\sop_ai_coding\\03_REPLICATION\\typinclub\\.venv\\Scripts\\python.e... "SECURE_HSTS_INCLUDE_SUBDOMAINS": false, "SECURE_HSTS_PRELOAD": false, "SECURE_PROXY_SSL_HEADER": null}\n', stderr='').returncode
+
+tests\test_security.py:53: AssertionError
+________ test_unsafe_production_configuration_refuses_start[changes4] _________
+
+changes = {'DJANGO_ALLOWED_HOSTS': 'testserver,*'}
+
+    @pytest.mark.parametrize('changes', [
+        {'DJANGO_SECRET_KEY': ''}, {'DJANGO_SECRET_KEY': 'weak'},
+        {'DJANGO_ALLOWED_HOSTS': ''}, {'DJANGO_ALLOWED_HOSTS': '*'},
+        {'DJANGO_ALLOWED_HOSTS': 'testserver,*'}, {'DJANGO_DEBUG': 'typo'},
+    ])
+    def test_unsafe_production_configuration_refuses_start(changes):
+        result = production_config(**changes)
+>       assert result.returncode != 0, 'Unsafe configuration must fail closed'
+E       AssertionError: Unsafe configuration must fail closed
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['C:\\Users\\cedric\\Desktop\\sop_ai_coding\\03_REPLICATION\\typinclub\\.venv\\Scripts\\python.e... "SECURE_HSTS_INCLUDE_SUBDOMAINS": false, "SECURE_HSTS_PRELOAD": false, "SECURE_PROXY_SSL_HEADER": null}\n', stderr='').returncode
+
+tests\test_security.py:53: AssertionError
+________ test_unsafe_production_configuration_refuses_start[changes5] _________
+
+changes = {'DJANGO_DEBUG': 'typo'}
+
+    @pytest.mark.parametrize('changes', [
+        {'DJANGO_SECRET_KEY': ''}, {'DJANGO_SECRET_KEY': 'weak'},
+        {'DJANGO_ALLOWED_HOSTS': ''}, {'DJANGO_ALLOWED_HOSTS': '*'},
+        {'DJANGO_ALLOWED_HOSTS': 'testserver,*'}, {'DJANGO_DEBUG': 'typo'},
+    ])
+    def test_unsafe_production_configuration_refuses_start(changes):
+        result = production_config(**changes)
+>       assert result.returncode != 0, 'Unsafe configuration must fail closed'
+E       AssertionError: Unsafe configuration must fail closed
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['C:\\Users\\cedric\\Desktop\\sop_ai_coding\\03_REPLICATION\\typinclub\\.venv\\Scripts\\python.e... "SECURE_HSTS_INCLUDE_SUBDOMAINS": false, "SECURE_HSTS_PRELOAD": false, "SECURE_PROXY_SSL_HEADER": null}\n', stderr='').returncode
+
+tests\test_security.py:53: AssertionError
+_________________ test_production_https_cookies_and_transport _________________
+
+production = {'DEBUG': False, 'ALLOWED_HOSTS': ['testserver'], 'SESSION_COOKIE_SECURE': False, 'CSRF_COOKIE_SECURE': False, ...}
+seeded = None, admin_user = <User: admin>
+
+    def test_production_https_cookies_and_transport(production, seeded, admin_user):
+        admin_user.set_password(PASSWORD)
+        admin_user.save()
+        with override_settings(**production):
+            client = Client(enforce_csrf_checks=True)
+            redirect = client.get('/admin/login/')
+>           assert redirect.status_code == 301
+E           assert 200 == 301
+E            +  where 200 = <TemplateResponse status_code=200, "text/html; charset=utf-8">.status_code
+
+tests\test_security.py:63: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+_______ test_public_csp_allows_local_assets_but_blocks_active_injection _______
+
+client = <django.test.client.Client object at 0x000001FEC362A750>, seeded = None
+
+    def test_public_csp_allows_local_assets_but_blocks_active_injection(client, seeded):
+        response = client.get('/')
+>       policy = response['Content-Security-Policy']
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_security.py:83:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\django\http\response.py:204: in __getitem__
+    return self.headers[header]
+           ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = {'Content-Type': 'text/html; charset=utf-8', 'Content-Language': 'fr', 'Vary': 'Cookie', 'X-Frame-Options': 'DENY', 'C...7', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'}
+key = 'Content-Security-Policy'
+
+    def __getitem__(self, key):
+>       return self._store[key.lower()][1]
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'content-security-policy'
+
+.venv\Lib\site-packages\django\utils\datastructures.py:308: KeyError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+___________ test_admin_rejects_active_url_payloads[//evil.example/] ___________
+
+admin_client = <django.test.client.Client object at 0x000001FEC3AC7070>
+seeded = None, url = '//evil.example/'
+
+    @pytest.mark.parametrize('url', ['javascript:alert(1)', 'data:text/html,<script>alert(1)</script>',
+        '//evil.example/', 'https://user:pass@evil.example/', 'https://example.com/" onmouseover="alert(1)'])
+    def test_admin_rejects_active_url_payloads(admin_client, seeded, url):
+        link = ExternalLink.objects.get(key='apk')
+        original = link.url
+        response = admin_client.post(reverse('admin:showcase_externallink_change', args=[link.pk]),
+            {'url': url, 'label': link.label_id})
+>       assert response.status_code == 200
+E       assert 302 == 200
+E        +  where 302 = <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/admin/showcase/externallink/">.status_code
+
+tests\test_security.py:135: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+___________________ test_session_fixation_logout_and_expiry ___________________
+
+client = <django.test.client.Client object at 0x000001FEC3D19D10>
+admin_user = <User: admin>
+
+    def test_session_fixation_logout_and_expiry(client, admin_user):
+        admin_user.set_password(PASSWORD)
+        admin_user.save()
+        session = client.session
+        session['prelogin'] = 'attacker-known-session'
+        session.save()
+        client.cookies['sessionid'] = session.session_key
+        old_key = session.session_key
+        response = client.post('/admin/login/', {'username': admin_user.username,
+            'password': PASSWORD, 'next': 'https://evil.example/'})
+>       assert response.status_code == 302 and response['Location'] == '/admin/'
+E       assert (302 == 302 and '/accounts/profile/' == '/admin/'
+E        +  where 302 = <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/accounts/profile/">.status_code
+E
+E         - /admin/
+E         + /accounts/profile/)
+
+tests\test_security.py:175: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_security.py::test_unsafe_production_configuration_refuses_start[changes0]
+FAILED tests/test_security.py::test_unsafe_production_configuration_refuses_start[changes1]
+FAILED tests/test_security.py::test_unsafe_production_configuration_refuses_start[changes2]
+FAILED tests/test_security.py::test_unsafe_production_configuration_refuses_start[changes3]
+FAILED tests/test_security.py::test_unsafe_production_configuration_refuses_start[changes4]
+FAILED tests/test_security.py::test_unsafe_production_configuration_refuses_start[changes5]
+FAILED tests/test_security.py::test_production_https_cookies_and_transport - ...
+FAILED tests/test_security.py::test_public_csp_allows_local_assets_but_blocks_active_injection
+FAILED tests/test_security.py::test_admin_rejects_active_url_payloads[//evil.example/]
+FAILED tests/test_security.py::test_session_fixation_logout_and_expiry - asse...
+10 failed, 16 passed in 23.58s

@@ -1,0 +1,18 @@
+............F.                                                           [100%]
+================================== FAILURES ===================================
+_____________ test_us02_downloads_use_real_absolute_destinations ______________
+
+client = <django.test.client.Client object at 0x000002349F351550>, seeded = None
+
+    def test_us02_downloads_use_real_absolute_destinations(client, seeded):
+        html = page(client)
+>       assert html.select_one('#download a[data-link="play"]')['href'] == 'https://play.google.com/store/apps/details?id=com.yemxapp.app'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests\test_public.py:36: TypeError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+=========================== short test summary info ===========================
+FAILED tests/test_public.py::test_us02_downloads_use_real_absolute_destinations
+1 failed, 13 passed in 1.46s
