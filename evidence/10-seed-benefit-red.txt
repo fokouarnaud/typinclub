@@ -1,0 +1,23 @@
+...................................F                                     [100%]
+================================== FAILURES ===================================
+_____________ test_seed_preserves_changed_benefit_text_and_order ______________
+tests\test_seed.py:24: in test_seed_preserves_changed_benefit_text_and_order
+    assert OfferBenefit.objects.filter(offer__code='free').count() == 5
+E   AssertionError: assert 6 == 5
+E    +  where 6 = count()
+E    +    where count = <QuerySet [<OfferBenefit: free: pricing.free.f1>, <OfferBenefit: free: pricing.free.f2>, <OfferBenefit: free: pricing....3>, <OfferBenefit: free: pricing.free.f4>, <OfferBenefit: free: pricing.free.f5>, <OfferBenefit: free: hero.subtitle>]>.count
+E    +      where <QuerySet [<OfferBenefit: free: pricing.free.f1>, <OfferBenefit: free: pricing.free.f2>, <OfferBenefit: free: pricing....3>, <OfferBenefit: free: pricing.free.f4>, <OfferBenefit: free: pricing.free.f5>, <OfferBenefit: free: hero.subtitle>]> = filter(offer__code='free')
+E    +        where filter = <django.db.models.manager.Manager object at 0x0000024A031DABD0>.filter
+E    +          where <django.db.models.manager.Manager object at 0x0000024A031DABD0> = OfferBenefit.objects
+---------------------------- Captured stdout call -----------------------------
+Reference content loaded; existing edits preserved.
+Reference content loaded; existing edits preserved.
+============================== warnings summary ===============================
+.venv\Lib\site-packages\django\db\models\fields\__init__.py:1148
+  C:\Users\cedric\Desktop\sop_ai_coding\03_REPLICATION\typinclub\.venv\Lib\site-packages\django\db\models\fields\__init__.py:1148: RemovedInDjango60Warning: The default scheme will be changed from 'http' to 'https' in Django 6.0. Pass the forms.URLField.assume_scheme argument to silence this warning, or set the FORMS_URLFIELD_ASSUME_HTTPS transitional setting to True to opt into using 'https' as the new default scheme.
+    return form_class(**defaults)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_seed.py::test_seed_preserves_changed_benefit_text_and_order
+1 failed, 35 passed, 1 warning in 20.33s

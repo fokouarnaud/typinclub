@@ -1,0 +1,19 @@
+.............F.                                                          [100%]
+================================== FAILURES ===================================
+_________ test_us03_compare_prices_limits_and_contact_without_sending _________
+
+client = <django.test.client.Client object at 0x000002A48264F5F0>, seeded = None
+
+    def test_us03_compare_prices_limits_and_contact_without_sending(client, seeded):
+        html = page(client)
+        offers = html.select('#pricing article')
+>       assert len(offers) == 2
+E       assert 0 == 2
+E        +  where 0 = len([])
+
+tests\test_public.py:48: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+=========================== short test summary info ===========================
+FAILED tests/test_public.py::test_us03_compare_prices_limits_and_contact_without_sending
+1 failed, 14 passed in 1.66s

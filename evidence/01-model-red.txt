@@ -1,0 +1,14 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+___________ test_localized_text_rejects_missing_translation_on_save ___________
+
+    def test_localized_text_rejects_missing_translation_on_save():
+        model = apps.get_model('showcase', 'LocalizedText', require_ready=True) if apps.all_models['showcase'] else None
+>       assert model is not None, 'The editorial text model must exist'
+E       AssertionError: The editorial text model must exist
+E       assert None is not None
+
+tests\test_models.py:10: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_models.py::test_localized_text_rejects_missing_translation_on_save
+1 failed in 0.55s

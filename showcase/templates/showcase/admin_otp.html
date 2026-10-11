@@ -1,0 +1,8 @@
+{% load static %}
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vérification administrateur — YemX</title><link rel="stylesheet" href="{% static 'showcase/otp.css' %}"></head>
+<body><main><h1>Vérification administrateur</h1><p>Après votre mot de passe, saisissez le code email à six chiffres. Il reste valable cinq minutes.</p>
+<p role="status">{{ message }}</p><form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Vérifier le code</button></form>
+<form method="post">{% csrf_token %}<button name="resend" value="1">Renvoyer un code</button><button name="cancel" value="1">Annuler et se déconnecter</button></form>
+</main></body></html>

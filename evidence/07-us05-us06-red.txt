@@ -1,0 +1,38 @@
+..............FF.                                                        [100%]
+================================== FAILURES ===================================
+_________ test_us05_gallery_renders_ordered_local_assets_and_captions _________
+
+client = <django.test.client.Client object at 0x000002706E94C410>, seeded = None
+
+    def test_us05_gallery_renders_ordered_local_assets_and_captions(client, seeded):
+        from showcase.models import Preview
+        preview = Preview.objects.get(key='dashboard')
+        preview.order = 99
+        preview.save()
+        html = page(client)
+        images = html.select('#app-preview img')
+>       assert len(images) == 4
+E       assert 0 == 4
+E        +  where 0 = len([])
+
+tests\test_public.py:64: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+___________ test_us06_faq_renders_six_ordered_questions_and_answers ___________
+
+client = <django.test.client.Client object at 0x000002706E8E87D0>, seeded = None
+
+    def test_us06_faq_renders_six_ordered_questions_and_answers(client, seeded):
+        html = page(client)
+        questions = html.select('#faq details')
+>       assert len(questions) == 6
+E       assert 0 == 6
+E        +  where 0 = len([])
+
+tests\test_public.py:73: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+=========================== short test summary info ===========================
+FAILED tests/test_public.py::test_us05_gallery_renders_ordered_local_assets_and_captions
+FAILED tests/test_public.py::test_us06_faq_renders_six_ordered_questions_and_answers
+2 failed, 15 passed in 2.06s

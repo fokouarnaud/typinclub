@@ -1,0 +1,1 @@
+29 security cases; 0 failures/errors; extracted from full-suite JUnit results

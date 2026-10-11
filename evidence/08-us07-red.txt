@@ -1,0 +1,20 @@
+................F..                                                      [100%]
+================================== FAILURES ===================================
+_____ test_us07_language_selection_persists_without_changing_destinations _____
+
+client = <django.test.client.Client object at 0x0000028D3196D9F0>, seeded = None
+
+    def test_us07_language_selection_persists_without_changing_destinations(client, seeded):
+        html = page(client, '/?lang=en')
+>       assert html.html['lang'] == 'en'
+E       AssertionError: assert 'fr' == 'en'
+E
+E         - en
+E         + fr
+
+tests\test_public.py:81: AssertionError
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+=========================== short test summary info ===========================
+FAILED tests/test_public.py::test_us07_language_selection_persists_without_changing_destinations
+1 failed, 18 passed in 2.41s

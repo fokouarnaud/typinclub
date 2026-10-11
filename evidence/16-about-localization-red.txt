@@ -1,0 +1,15 @@
+..F                                                                      [100%]
+================================== FAILURES ===================================
+_________ test_about_mission_and_home_accessible_label_are_localized __________
+tests\test_templates.py:35: in test_about_mission_and_home_accessible_label_are_localized
+    assert 'Our goal is to digitize' in html.select_one('#about').get_text()
+E   assert 'Our goal is to digitize' in "\n\n\nYemX - The Cameroonian startup behind the merchants' digital ledger\nYemX is a startup born in Yaound� with a s...s la gestion quotidienne de leurs ventes, stocks et cr�dits clients � directement depuis leur t�l�phone.\n        \n\n"
+E    +  where "\n\n\nYemX - The Cameroonian startup behind the merchants' digital ledger\nYemX is a startup born in Yaound� with a s...s la gestion quotidienne de leurs ventes, stocks et cr�dits clients � directement depuis leur t�l�phone.\n        \n\n" = get_text()
+E    +    where get_text = <section class="py-16 md:py-24 px-6 text-center border-t border-surface-container-high" id="about">\n<div class="max-w-...tidienne de leurs ventes, stocks et cr�dits clients � directement depuis leur t�l�phone.\n        </p>\n</div>\n</section>.get_text
+E    +      where <section class="py-16 md:py-24 px-6 text-center border-t border-surface-container-high" id="about">\n<div class="max-w-...tidienne de leurs ventes, stocks et cr�dits clients � directement depuis leur t�l�phone.\n        </p>\n</div>\n</section> = select_one('#about')
+E    +        where select_one = \n<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" nam...egal": "Legal links", "store.apple": "YemX coming soon to the App Store", "home.label": "YemX - Home"}}</script></html>.select_one
+---------------------------- Captured stdout setup ----------------------------
+Reference content loaded; existing edits preserved.
+=========================== short test summary info ===========================
+FAILED tests/test_templates.py::test_about_mission_and_home_accessible_label_are_localized
+1 failed, 2 passed in 1.72s

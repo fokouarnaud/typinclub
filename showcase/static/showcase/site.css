@@ -1,0 +1,66 @@
+/* YemX reference utilities live in reference.css. Layers: header 50, menu 60, native dialog top layer. */
+[hidden] { display: none !important; }
+html { scroll-padding-top: 0; overflow-x: clip; }
+body { overflow-x: clip; }
+section { scroll-margin-top: 96px; }
+.reveal { opacity: 1; transform: none; }
+#intro > div.absolute { display: none; }
+.icon { display: inline-block; width: 1em; height: 1em; flex-shrink: 0; vertical-align: -.15em; font-size: 24px; }
+.icon.text-base { font-size: 16px; height: 24px; } .icon.text-lg { font-size: 18px; height: 28px; } .icon.text-xl { font-size: 20px; height: 28px; } .icon.text-2xl { font-size: 24px; height: 32px; } .icon.text-3xl { font-size: 30px; height: 36px; }
+.lang-toggle .language-option { padding: 4px 10px; border-radius: 9999px; transition: background .2s; color: #3f4941; }
+.lang-toggle .language-option.active { background: #fff; color: #1b794a; box-shadow: 0 1px 3px #00000019; }
+:where(a, button, summary):focus-visible { outline: 3px solid #1b794a; outline-offset: 4px; }
+.skip { position: fixed; top: -120px; left: 16px; padding: 14px 20px; background: #fff; color: #1b794a; z-index: 100; border-radius: 10px; }
+.skip:focus { top: 12px; }
+.preview-trigger { display: block; text-align: inherit; border-radius: 2rem; }
+.preview-phone { margin: 0; }
+.faq-question { cursor: pointer; list-style: none; }
+.faq-question::-webkit-details-marker { display: none; }
+.faq-answer { max-height: none; }
+.faq-item[open] .faq-answer { padding-bottom: 1.25rem; }
+.faq-item[open] .faq-icon { transform: rotate(180deg); }
+.preview-modal { position: fixed; inset: 0; margin: 0; padding: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: transparent; color: #fff; border: 0; }
+.preview-modal:not([open]) { display: none; }
+.preview-modal[open] { display: flex; align-items: center; justify-content: center; }
+.preview-modal::backdrop { background: transparent; }
+#preview-modal-content > div:first-child { width: min(280px, calc((100dvh - 150px) / 2.064)); height: min(578px, calc(100dvh - 150px)); }
+#preview-modal-dots button { width: 8px; height: 8px; border-radius: 50%; background: #a3ada5; }
+#preview-modal-dots button[aria-current='true'] { width: 24px; border-radius: 4px; background: #73dc9a; }
+.scroll-locked { overflow: hidden; }
+#navbar { background: #f6f8f7ed; backdrop-filter: blur(16px); }
+footer .grid > div { min-width: 0; }
+footer li.flex { display: block; overflow-wrap: anywhere; }
+footer li.flex .icon { margin-right: 4px; }
+@media (max-width: 767px) { footer li.flex { font-size: 12px; } }
+#navbar > div, #navbar nav { min-width: 0; }
+#navbar nav { gap: 24px; }
+.phone-preview { max-width: 220px; }
+@media (min-width: 768px) { #preview-modal-content > div:first-child { width: min(340px, calc((100dvh - 150px) / 2.059)); height: min(700px, calc(100dvh - 150px)); } }
+@media (min-width: 768px) and (max-width: 1000px) { #navbar { padding-inline: 20px; } #navbar nav { gap: 18px; font-size: 13px; } #navbar > div { gap: 18px; } #app-preview .preview-phone { flex: 1 1 0; min-width: 0; } .phone-preview { width: 100%; height: auto; aspect-ratio: 220 / 454; } }
+@media (max-width: 767px) { #navbar nav .nav-faq { display: none; } #intro h1 { font-size: 30px; } #intro h1 > span:first-child { font-size: 48px; } .mobile-menu-panel { max-height: calc(100dvh - 20px); overflow-y: auto; } #pricing article { min-width: 0; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+#navbar, #bottom-nav { left: 0; right: 0; transform: none; margin-inline: auto; }
+
+/* Keep tablet columns inside their gutters; overflow clipping must not hide content. */
+@media (min-width: 768px) and (max-width: 1000px) {
+  #intro > .max-w-7xl { gap: 32px; }
+  #intro h1 { font-size: 40px; }
+  #intro > .max-w-7xl > div { min-width: 0; }
+  #intro > .max-w-7xl > div:last-child > .relative {
+    width: calc(100% - 28px);
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 320 / 660;
+  }
+  #intro .flex-col > .sm\:flex-row { flex-wrap: wrap; }
+  #download .flex-1 { min-width: 0; padding: 32px; }
+  #download .sm\:flex-row { flex-wrap: wrap; }
+  #download .md\:w-1\/3 { padding: 24px; flex-shrink: 0; }
+  #download .md\:w-1\/3 > .relative {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 200 / 412;
+  }
+}
