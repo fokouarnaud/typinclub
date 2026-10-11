@@ -1,0 +1,143 @@
+{
+  "fr": {
+    "status": 200,
+    "language": "fr",
+    "title": "YemX Le cahier numérique des commerçants.",
+    "sections": [
+      "intro",
+      "problems",
+      "features",
+      "app-preview",
+      "how-it-works",
+      "pricing",
+      "stats",
+      "faq",
+      "download",
+      "about"
+    ],
+    "security_headers": {
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+      "Strict-Transport-Security": "max-age=31536000",
+      "X-Frame-Options": "DENY",
+      "X-Content-Type-Options": "nosniff"
+    },
+    "assets": {
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/dashboard.webp": {
+        "status": 200,
+        "bytes": 14140,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/journal.webp": {
+        "status": 200,
+        "bytes": 17668,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/logo.webp": {
+        "status": 200,
+        "bytes": 18054,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/report.webp": {
+        "status": 200,
+        "bytes": 10572,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/stock.webp": {
+        "status": 200,
+        "bytes": 8746,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/fonts/lexend.css": {
+        "status": 200,
+        "bytes": 894,
+        "type": "text/css"
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/reference.css": {
+        "status": 200,
+        "bytes": 28773,
+        "type": "text/css"
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/site.css": {
+        "status": 200,
+        "bytes": 4413,
+        "type": "text/css"
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/site.js": {
+        "status": 200,
+        "bytes": 8221,
+        "type": "text/javascript"
+      }
+    }
+  },
+  "en": {
+    "status": 200,
+    "language": "en",
+    "title": "YemX The digital ledger for merchants.",
+    "sections": [
+      "intro",
+      "problems",
+      "features",
+      "app-preview",
+      "how-it-works",
+      "pricing",
+      "stats",
+      "faq",
+      "download",
+      "about"
+    ],
+    "security_headers": {
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+      "Strict-Transport-Security": "max-age=31536000",
+      "X-Frame-Options": "DENY",
+      "X-Content-Type-Options": "nosniff"
+    },
+    "assets": {
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/dashboard.webp": {
+        "status": 200,
+        "bytes": 14140,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/journal.webp": {
+        "status": 200,
+        "bytes": 17668,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/logo.webp": {
+        "status": 200,
+        "bytes": 18054,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/report.webp": {
+        "status": 200,
+        "bytes": 10572,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/assets/stock.webp": {
+        "status": 200,
+        "bytes": 8746,
+        "type": null
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/fonts/lexend.css": {
+        "status": 200,
+        "bytes": 894,
+        "type": "text/css"
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/reference.css": {
+        "status": 200,
+        "bytes": 28773,
+        "type": "text/css"
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/site.css": {
+        "status": 200,
+        "bytes": 4413,
+        "type": "text/css"
+      },
+      "https://typinclub.pythonanywhere.com/static/showcase/site.js": {
+        "status": 200,
+        "bytes": 8221,
+        "type": "text/javascript"
+      }
+    }
+  },
+  "http_final_url": "https://typinclub.pythonanywhere.com/"
+}
